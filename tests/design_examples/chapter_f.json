@@ -1,0 +1,67 @@
+{
+  "_comment": [
+    "Chapter F validation cases with an INDEPENDENT PUBLISHED source.",
+    "",
+    "Every case must carry a 'source' field naming where the expected value came",
+    "from -- TestPublishedBenchmarks::test_every_case_declares_its_source fails",
+    "the suite otherwise. Values here are AISC Manual Table 3-2 rows recorded in",
+    "the aisc-steel-design skill's validate.py, which cites Table 3-2 directly.",
+    "",
+    "AISC Design Examples V16.0 is still not on this machine, so nothing here",
+    "claims to be F.1-1A..F.13. Add those cases and they run automatically.",
+    "",
+    "Each case:",
+    "  id        label for the test report",
+    "  source    required -- 'AISC Manual Table 3-2' or 'User Note F1.1' etc.",
+    "  section   canonical property names, US customary",
+    "  grade     any designation pyaisc360.materials.grade() accepts",
+    "  Lb        unbraced length in INCHES (0 = continuously braced)",
+    "  Cb        lateral-torsional buckling modification factor",
+    "  Lp_ft     expected Lp in FEET, optional",
+    "  Lr_ft     expected Lr in FEET, optional",
+    "  phiMn_kipft  expected phi_b*Mn in KIP-FEET, optional",
+    "  tol       relative tolerance, default 0.005 (3 significant figures)"
+  ],
+  "cases": [
+    {
+      "id": "Table 3-2: W18X50, A992",
+      "source": "AISC Manual Table 3-2 (via aisc-steel-design/scripts/validate.py)",
+      "section": {
+        "name": "W18X50", "Ag": 14.7, "Zx": 101.0, "Sx": 88.9, "ry": 1.65,
+        "rts": 1.98, "J": 1.24, "ho": 17.4, "Iy": 40.1, "bf_2tf": 6.57, "h_tw": 45.2
+      },
+      "grade": "A992", "Lb": 0.0, "Cb": 1.0,
+      "Lp_ft": 5.83, "Lr_ft": 16.9, "phiMn_kipft": 379.0, "tol": 0.005
+    },
+    {
+      "id": "Table 3-2: W16X26, A992",
+      "source": "AISC Manual Table 3-2 (via aisc-steel-design/scripts/validate.py)",
+      "section": {
+        "name": "W16X26", "Ag": 7.68, "Zx": 44.2, "Sx": 38.4, "ry": 1.12,
+        "rts": 1.38, "J": 0.262, "ho": 15.4, "Iy": 9.59, "bf_2tf": 7.97, "h_tw": 56.8
+      },
+      "grade": "A992", "Lb": 0.0, "Cb": 1.0,
+      "Lp_ft": 3.96, "phiMn_kipft": 166.0, "tol": 0.005
+    },
+    {
+      "id": "Table 3-2: W24X68, A992",
+      "source": "AISC Manual Table 3-2 (via aisc-steel-design/scripts/validate.py)",
+      "section": {
+        "name": "W24X68", "Ag": 20.1, "Zx": 177.0, "Sx": 154.0, "ry": 1.87,
+        "rts": 2.26, "J": 1.87, "ho": 23.1, "Iy": 70.4, "bf_2tf": 7.66, "h_tw": 52.0
+      },
+      "grade": "A992", "Lb": 0.0, "Cb": 1.0,
+      "Lp_ft": 6.61, "phiMn_kipft": 664.0, "tol": 0.005
+    },
+    {
+      "id": "Table 3-2: W24X55, A992",
+      "source": "AISC Manual Table 3-2 (via aisc-steel-design/scripts/validate.py)",
+      "section": {
+        "name": "W24X55", "Ag": 16.2, "Zx": 134.0, "Sx": 114.0, "ry": 1.34,
+        "rts": 1.68, "J": 1.18, "ho": 23.1, "Iy": 29.1, "bf_2tf": 6.94, "h_tw": 54.6
+      },
+      "grade": "A992", "Lb": 0.0, "Cb": 1.0,
+      "Lp_ft": 4.73, "phiMn_kipft": 503.0, "tol": 0.005
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "_comment": [
+    "Chapter E validation cases with an INDEPENDENT PUBLISHED source.",
+    "",
+    "Provenance of what is here: AISC Manual Table 4-1a values recorded in the",
+    "aisc-steel-design skill's validate.py",
+    "(D:/Download/AI estimation/Design/aisc-steel-design/), which cites Table 4-1a",
+    "directly. These are Manual column-load-table values, NOT AISC Design Examples",
+    "V16.0 cases -- that companion is still not on this machine, so no case here",
+    "claims to be E.1A-E.7.",
+    "",
+    "Each case:",
+    "  id        label for the test report",
+    "  source    where the expected value came from -- required, no exceptions",
+    "  section   canonical property names (Ag, rx, ry, Ix, Iy, J, Cw), US customary",
+    "  grade     any designation pyaisc360.materials.grade() accepts",
+    "  Lcx, Lcy  effective lengths in INCHES (the Manual prints feet)",
+    "  Lcz       optional, defaults to Lcy",
+    "  symmetry  'doubly symmetric' | 'singly symmetric about the y-axis'",
+    "            | 'singly symmetric about the x-axis' | 'unsymmetric'",
+    "  basis     'LRFD' or 'ASD'",
+    "  expected  phi_c*Pn (LRFD) or Pn/Omega_c (ASD), in KIPS",
+    "  tol       optional relative tolerance, default 0.005 (3 significant figures)",
+    "  skip      optional true to park a case without deleting it"
+  ],
+  "cases": [
+    {
+      "id": "Table 4-1a: W14X90, A992, KL = 14 ft",
+      "source": "AISC Manual Table 4-1a (via aisc-steel-design/scripts/validate.py)",
+      "note": "Manual prints 1030 kips; 3 significant figures of the exact 1025.6.",
+      "section": {
+        "name": "W14X90",
+        "Ag": 26.5,
+        "rx": 6.14,
+        "ry": 3.70,
+        "Ix": 999.0,
+        "Iy": 362.0,
+        "J": 4.06,
+        "Cw": 16000.0
+      },
+      "grade": "A992",
+      "Lcx": 168.0,
+      "Lcy": 168.0,
+      "basis": "LRFD",
+      "expected": 1030.0,
+      "tol": 0.01
+    },
+    {
+      "id": "Table 4-1a: W14X90, A992, KL -> 0 (squash load)",
+      "source": "AISC Manual Table 4-1a upper bound = phi_c*Fy*Ag = 0.90*50*26.5",
+      "note": "Both flexural and torsional buckling cap at Fy as Lc -> 0.",
+      "section": {
+        "name": "W14X90",
+        "Ag": 26.5,
+        "rx": 6.14,
+        "ry": 3.70,
+        "Ix": 999.0,
+        "Iy": 362.0,
+        "J": 4.06,
+        "Cw": 16000.0
+      },
+      "grade": "A992",
+      "Lcx": 0.012,
+      "Lcy": 0.012,
+      "basis": "LRFD",
+      "expected": 1192.5,
+      "tol": 0.001
+    }
+  ]
+}

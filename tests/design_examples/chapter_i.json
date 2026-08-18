@@ -1,0 +1,82 @@
+{
+  "_comment": [
+    "Chapter I validation cases. Every case must carry a 'source' field --",
+    "TestProvenance::test_every_case_declares_its_source fails otherwise.",
+    "",
+    "Sources: values printed in the Specification itself (Sect. I8.2a's Rg/Rp),",
+    "and closed forms evaluated by hand from the equation as written.",
+    "",
+    "Each case: id, source, kind ('Rg_Rp' | 'Ec' | 'Pno_encased'), inputs,",
+    "expected, tol."
+  ],
+  "cases": [
+    {
+      "id": "Rg/Rp, no decking",
+      "source": "AISC Sect. I8.2a",
+      "kind": "Rg_Rp", "orientation": "no decking",
+      "expected": [1.0, 0.75], "tol": 0.0
+    },
+    {
+      "id": "Rg/Rp, deck parallel, wr/hr >= 1.5",
+      "source": "AISC Sect. I8.2a",
+      "kind": "Rg_Rp", "orientation": "deck parallel to the steel shape",
+      "rib_width_to_depth": 2.0, "expected": [1.0, 0.75], "tol": 0.0
+    },
+    {
+      "id": "Rg/Rp, deck parallel, wr/hr < 1.5",
+      "source": "AISC Sect. I8.2a",
+      "kind": "Rg_Rp", "orientation": "deck parallel to the steel shape",
+      "rib_width_to_depth": 1.2, "expected": [0.85, 0.75], "tol": 0.0
+    },
+    {
+      "id": "Rg/Rp, deck perpendicular, 1 anchor, emid-ht < 2 in.",
+      "source": "AISC Sect. I8.2a",
+      "kind": "Rg_Rp", "orientation": "deck perpendicular to the steel shape",
+      "anchors_per_rib": 1, "emid_ht_at_least_2in": false,
+      "expected": [1.0, 0.6], "tol": 0.0
+    },
+    {
+      "id": "Rg/Rp, deck perpendicular, 2 anchors, emid-ht < 2 in.",
+      "source": "AISC Sect. I8.2a",
+      "kind": "Rg_Rp", "orientation": "deck perpendicular to the steel shape",
+      "anchors_per_rib": 2, "emid_ht_at_least_2in": false,
+      "expected": [0.85, 0.6], "tol": 0.0
+    },
+    {
+      "id": "Rg/Rp, deck perpendicular, 3+ anchors, emid-ht < 2 in.",
+      "source": "AISC Sect. I8.2a",
+      "kind": "Rg_Rp", "orientation": "deck perpendicular to the steel shape",
+      "anchors_per_rib": 3, "emid_ht_at_least_2in": false,
+      "expected": [0.7, 0.6], "tol": 0.0
+    },
+    {
+      "id": "Rg/Rp, deck perpendicular, 2 anchors, emid-ht >= 2 in.",
+      "source": "AISC Sect. I8.2a footnote [b]",
+      "note": "Rp may be raised to 0.75 -- worth 25% of the anchor strength.",
+      "kind": "Rg_Rp", "orientation": "deck perpendicular to the steel shape",
+      "anchors_per_rib": 2, "emid_ht_at_least_2in": true,
+      "expected": [0.85, 0.75], "tol": 0.0
+    },
+    {
+      "id": "Ec, normal weight 145 pcf, f'c = 4 ksi",
+      "source": "AISC Sect. I2.1b",
+      "note": "Ec = 145^1.5*sqrt(4) = 3492 ksi.",
+      "kind": "Ec", "wc": 145.0, "fc_prime": 4.0,
+      "expected": 3492.0, "tol": 0.005
+    },
+    {
+      "id": "Ec, lightweight 110 pcf, f'c = 4 ksi",
+      "source": "AISC Sect. I2.1b",
+      "note": "Ec = 110^1.5*sqrt(4) = 2307 ksi -- a third less than normal weight.",
+      "kind": "Ec", "wc": 110.0, "fc_prime": 4.0,
+      "expected": 2307.4, "tol": 0.005
+    },
+    {
+      "id": "Pno, encased W14x90 in a 24x24 column",
+      "source": "AISC Eq. I2-4, evaluated by hand",
+      "note": "50*26.5 + 60*4.0 + 0.85*5.0*545.5 = 1325 + 240 + 2318 = 3883 kips.",
+      "kind": "Pno_encased", "args": [50.0, 26.5, 60.0, 4.0, 5.0, 545.5],
+      "expected": 3883.4, "tol": 0.001
+    }
+  ]
+}

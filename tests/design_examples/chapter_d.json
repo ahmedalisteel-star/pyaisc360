@@ -1,0 +1,45 @@
+{
+  "_comment": [
+    "Chapter D validation cases. Every case must carry a 'source' field --",
+    "TestPublishedBenchmarks::test_every_case_declares_its_source fails otherwise.",
+    "",
+    "Sources used here:",
+    "  'Table D3.1, p. 16.1-31' -- shear lag factors printed in the Specification",
+    "      itself. Testing against these is testing against the source document.",
+    "  'first principles; cross-checked' -- Eqs. D2-1/D2-2 evaluated by hand and",
+    "      confirmed against the independent implementation in",
+    "      aisc-steel-design/scripts/aisc360.py (relative difference 0.0e+00).",
+    "",
+    "Each case: id, source, Ag, An, U, grade, phiPn_kips, governing, tol."
+  ],
+  "cases": [
+    {
+      "id": "A36 plate 1/2 x 5 with two 7/8-in. bolts",
+      "source": "first principles; cross-checked against aisc-steel-design/scripts/aisc360.py",
+      "note": "An = 2.5 - 2*(0.875 + 0.125)*0.5 = 1.5 in^2. Rupture governs.",
+      "Ag": 2.5, "An": 1.5, "U": 1.0, "grade": "A36",
+      "phiPn_kips": 65.25, "governing": "tensile rupture", "tol": 0.001
+    },
+    {
+      "id": "A36 plate, no holes (welded) -- yielding governs",
+      "source": "first principles; Eq. D2-1 with Ae = Ag and U = 1.0",
+      "note": "Fy*Ag = 90 vs Fu*Ae = 145; yielding governs on both nominal and available.",
+      "Ag": 2.5, "An": 2.5, "U": 1.0, "grade": "A36",
+      "phiPn_kips": 81.0, "governing": "tensile yielding", "tol": 0.001
+    },
+    {
+      "id": "A36 plate in the ordering-inversion band",
+      "source": "first principles; constructed so Fy*Ag/(Fu*Ae) falls in (0.833, 1.0)",
+      "note": "Nominal: yielding 90 < rupture 98.6 -> yielding. Available: yielding 81 > rupture 73.95 -> RUPTURE. The two orderings disagree; Sect. D2's differing phi factors are why.",
+      "Ag": 2.5, "An": 1.7, "U": 1.0, "grade": "A36",
+      "phiPn_kips": 73.95, "governing": "tensile rupture", "tol": 0.001
+    },
+    {
+      "id": "A992 W-shape with bolted flanges, U = 0.90",
+      "source": "first principles; cross-checked against aisc-steel-design/scripts/aisc360.py",
+      "note": "Table D3.1 case 7 with bf >= 2/3 d gives U = 0.90.",
+      "Ag": 14.7, "An": 12.0, "U": 0.9, "grade": "A992",
+      "phiPn_kips": 526.5, "governing": "tensile rupture", "tol": 0.001
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "_comment": [
+    "Chapter G validation cases. Every case must carry a 'source' field --",
+    "TestPublishedBenchmarks::test_every_case_declares_its_source fails otherwise.",
+    "",
+    "Two kinds of source appear here:",
+    "  'AISC Manual Table 3-2'  -- a published tabulated value.",
+    "  'User Note G2.1, p. 16.1-71' -- the Specification's own list of ASTM A6",
+    "      shapes that do NOT meet Sect. G2.1(a) at Fy = 50 ksi. Testing against",
+    "      it is testing against the Specification itself.",
+    "  'derived; cross-checked' -- hand-derived and confirmed bit-for-bit against",
+    "      the independent implementation in aisc-steel-design/scripts/aisc360.py",
+    "      (23 W-shapes, relative difference 0.0e+00). A regression lock, and",
+    "      labelled as such rather than passed off as a Manual value.",
+    "",
+    "Each case: id, source, section (canonical names), grade, h_over_tw,",
+    "phiVn_kips, G2_1a (bool, optional), tol (default 0.005)."
+  ],
+  "cases": [
+    {
+      "id": "Table 3-2: W18X50 strong-axis shear",
+      "source": "AISC Manual Table 3-2 (via aisc-steel-design/scripts/validate.py)",
+      "note": "Manual prints 192 kips; Sect. G2.1(a) applies so phi_v = 1.00.",
+      "section": { "name": "W18X50", "d": 18.0, "tw": 0.355, "Ag": 14.7 },
+      "grade": "A992", "h_over_tw": 45.2,
+      "G2_1a": true, "phiVn_kips": 192.0, "tol": 0.005
+    },
+    {
+      "id": "User Note G2.1: W16X26 does NOT meet Sect. G2.1(a)",
+      "source": "User Note to Sect. G2.1, p. 16.1-71",
+      "note": "W16x26 is named in the Specification's own exception list at Fy = 50.",
+      "section": { "name": "W16X26", "d": 15.7, "tw": 0.250, "Ag": 7.68 },
+      "grade": "A992", "h_over_tw": 56.8,
+      "G2_1a": false, "phiVn_kips": 105.975, "tol": 0.005
+    },
+    {
+      "id": "User Note G2.1: W24X55 does NOT meet Sect. G2.1(a)",
+      "source": "User Note to Sect. G2.1, p. 16.1-71",
+      "note": "W24x55 is named in the Specification's own exception list at Fy = 50.",
+      "section": { "name": "W24X55", "d": 23.6, "tw": 0.395, "Ag": 16.2 },
+      "grade": "A992", "h_over_tw": 54.6,
+      "G2_1a": false, "phiVn_kips": 251.694, "tol": 0.005
+    },
+    {
+      "id": "W24X68 strong-axis shear",
+      "source": "derived; cross-checked bit-for-bit against aisc-steel-design/scripts/aisc360.py",
+      "note": "h/tw = 52.0 <= 53.95, so Sect. G2.1(a) applies and phi_v = 1.00.",
+      "section": { "name": "W24X68", "d": 23.7, "tw": 0.415, "Ag": 20.1 },
+      "grade": "A992", "h_over_tw": 52.0,
+      "G2_1a": true, "phiVn_kips": 295.065, "tol": 0.005
+    }
+  ]
+}

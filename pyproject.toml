@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyaisc360"
+version = "0.1.0.dev0"
+description = "AISC 360-16 steel design checks as a typed, traceable Python library"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Ahmed Ali" }]
+keywords = ["aisc", "steel", "structural", "lrfd", "asd", "bim", "freecad"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering",
+]
+# Deliberately dependency-free at runtime: the library must import inside
+# FreeCAD's embedded interpreter, which has no pip of its own.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "pytest-cov>=4.1", "mypy>=1.8", "ruff>=0.3"]
+
+[project.urls]
+Source = "https://github.com/ahmedalisteel/pyaisc360"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyaisc360"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+  "design_example: validated against AISC Design Examples V16.0 (id given in the marker)",
+]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src/pyaisc360"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM"]
+# Structural engineering notation is single-letter and case-carrying by nature:
+# Fy, Mn, Lb, Cb, phi_b are the names in the Specification and must survive.
+ignore = ["N803", "N806", "E741"]
+
+[tool.ruff.lint.per-file-ignores]
+# MODULE_MAP is a table; wrapping its rows would make it harder to read, not easier.
+"tools/*.py" = ["E501"]
+# Tests and chapter modules name things after the Specification: section labels
+# (E4, B4.1a), symbols (Fex, Ki) and table numbers (E7.1) are the identifiers an
+# engineer will search for, and lowercasing them would break that.
+"tests/*.py" = ["N801", "N802", "N812"]
+"src/pyaisc360/chapter_*.py" = ["N802"]
+"src/pyaisc360/appendix_*.py" = ["N802"]

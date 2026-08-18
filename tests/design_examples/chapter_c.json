@@ -1,0 +1,70 @@
+{
+  "_comment": [
+    "Chapter C validation cases. Every case must carry a 'source' field --",
+    "TestProvenance::test_every_case_declares_its_source fails otherwise.",
+    "",
+    "Chapter C produces no strengths, so these are values of the stiffness and",
+    "notional-load parameters rather than capacities. All are exact closed forms",
+    "from the Specification text, so the tolerance is machine precision.",
+    "",
+    "Each case: id, source, kind ('tau_b' | 'notional'), inputs, expected, tol."
+  ],
+  "cases": [
+    {
+      "id": "tau_b below the 0.5 threshold",
+      "source": "AISC Sect. C2.3",
+      "note": "Eq. C2-2a: alpha*Pr/Pns <= 0.5 gives tau_b = 1.0 exactly.",
+      "kind": "tau_b", "Pr": 400.0, "Pns": 1000.0, "basis": "LRFD",
+      "expected": 1.0, "tol": 0.0
+    },
+    {
+      "id": "tau_b exactly at the 0.5 threshold",
+      "source": "AISC Sect. C2.3",
+      "note": "The branches meet at 1.0: 4*(0.5)*(1 - 0.5) = 1.0.",
+      "kind": "tau_b", "Pr": 500.0, "Pns": 1000.0, "basis": "LRFD",
+      "expected": 1.0, "tol": 0.0
+    },
+    {
+      "id": "tau_b at alpha*Pr/Pns = 0.75",
+      "source": "AISC Sect. C2.3",
+      "note": "Eq. C2-2b: 4*(0.75)*(0.25) = 0.75.",
+      "kind": "tau_b", "Pr": 750.0, "Pns": 1000.0, "basis": "LRFD",
+      "expected": 0.75, "tol": 1e-12
+    },
+    {
+      "id": "tau_b at alpha*Pr/Pns = 0.9",
+      "source": "AISC Sect. C2.3",
+      "note": "Eq. C2-2b: 4*(0.9)*(0.1) = 0.36.",
+      "kind": "tau_b", "Pr": 900.0, "Pns": 1000.0, "basis": "LRFD",
+      "expected": 0.36, "tol": 1e-12
+    },
+    {
+      "id": "tau_b under ASD carries alpha = 1.6",
+      "source": "AISC Sect. C2.3",
+      "note": "Pr = 400 at Pns = 1000 is 0.40 under LRFD but 0.64 under ASD, so ASD bites where LRFD does not: 4*(0.64)*(0.36) = 0.9216.",
+      "kind": "tau_b", "Pr": 400.0, "Pns": 1000.0, "basis": "ASD",
+      "expected": 0.9216, "tol": 1e-12
+    },
+    {
+      "id": "notional load, LRFD",
+      "source": "AISC Sect. C2.2b",
+      "note": "Eq. C2-1: Ni = 0.002*alpha*Yi = 0.002*1.0*1000 = 2.0 kips.",
+      "kind": "notional", "Yi": 1000.0, "basis": "LRFD",
+      "expected": 2.0, "tol": 1e-12
+    },
+    {
+      "id": "notional load, ASD",
+      "source": "AISC Sect. C2.2b",
+      "note": "Eq. C2-1 with alpha = 1.6: 0.002*1.6*1000 = 3.2 kips.",
+      "kind": "notional", "Yi": 1000.0, "basis": "ASD",
+      "expected": 3.2, "tol": 1e-12
+    },
+    {
+      "id": "tau_b = 1.0 alternative notional load",
+      "source": "AISC Sect. C2.3",
+      "note": "Sect. C2.3(c): an ADDITIONAL 0.001*alpha*Yi = 1.0 kip, on top of Eq. C2-1.",
+      "kind": "notional_tau_b_unity", "Yi": 1000.0, "basis": "LRFD",
+      "expected": 1.0, "tol": 1e-12
+    }
+  ]
+}

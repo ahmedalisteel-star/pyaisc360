@@ -1,0 +1,4737 @@
+{
+ "source": "A360-16W.txt",
+ "spec": "ANSI/AISC 360-16, July 7, 2016",
+ "body_lines": [
+  3132,
+  14882
+ ],
+ "corrections": [
+  {
+   "line": 10709,
+   "dump_says": "K2-2a",
+   "actually": "K2-2b",
+   "section": "K2",
+   "why": "Table K2.1's longitudinal-plate row prints (K2-2a) for the axial equation and (K2-2b) for Mn = 0.8*lb*Rn. The dump emits (K2-2a) twice; the label (K2-2b) is legible interleaved down the mangled cell as '(K' '2' '-2' 'b' ')'. Table K2.1's transverse-plate row above it shows the same two-label pattern extracted correctly as K2-1b/K2-1a, confirming the layout."
+  }
+ ],
+ "counts": {
+  "equations": 373,
+  "tables": 43,
+  "sections": 120,
+  "per_chapter": {
+   "A1": 9,
+   "A2": 6,
+   "A3": 7,
+   "A4": 11,
+   "A6": 18,
+   "A7": 2,
+   "A8": 8,
+   "B": 2,
+   "C": 3,
+   "D": 5,
+   "E": 27,
+   "F": 108,
+   "G": 21,
+   "H": 16,
+   "I": 39,
+   "J": 44,
+   "K": 47
+  },
+  "per_section": {
+   "A1": 9,
+   "A2": 6,
+   "A3": 7,
+   "A4": 11,
+   "A6": 18,
+   "A7": 2,
+   "A8": 8,
+   "B3": 2,
+   "C2": 3,
+   "D2": 2,
+   "D3": 1,
+   "D5": 2,
+   "E3": 4,
+   "E4": 9,
+   "E5": 4,
+   "E6": 3,
+   "E7": 7,
+   "F1": 1,
+   "F10": 9,
+   "F11": 4,
+   "F12": 4,
+   "F13": 9,
+   "F2": 9,
+   "F3": 2,
+   "F4": 20,
+   "F5": 10,
+   "F6": 4,
+   "F7": 13,
+   "F8": 4,
+   "F9": 19,
+   "G2": 15,
+   "G3": 1,
+   "G4": 1,
+   "G5": 3,
+   "G6": 1,
+   "H1": 4,
+   "H2": 1,
+   "H3": 10,
+   "H4": 1,
+   "I2": 18,
+   "I3": 7,
+   "I5": 3,
+   "I6": 6,
+   "I8": 5,
+   "J10": 13,
+   "J2": 7,
+   "J3": 13,
+   "J4": 6,
+   "J7": 3,
+   "J8": 2,
+   "K1": 1,
+   "K2": 6,
+   "K3": 17,
+   "K4": 9,
+   "K5": 14
+  }
+ },
+ "equations": [
+  {
+   "label": "B3-1",
+   "chapter": "B",
+   "section": "B3",
+   "line": 3598,
+   "page": 12,
+   "context": "R \u2264\u03c6R (B3-1)"
+  },
+  {
+   "label": "B3-2",
+   "chapter": "B",
+   "section": "B3",
+   "line": 3619,
+   "page": 12,
+   "context": "R a \u2264 \u03a9 n (B3-2)"
+  },
+  {
+   "label": "C2-1",
+   "chapter": "C",
+   "section": "C2",
+   "line": 4265,
+   "page": 25,
+   "context": "N =0.002\u03b1Y (C2-1)"
+  },
+  {
+   "label": "C2-2a",
+   "chapter": "C",
+   "section": "C2",
+   "line": 4335,
+   "page": 27,
+   "context": "\u03c4 =1.0 (C2-2a)"
+  },
+  {
+   "label": "C2-2b",
+   "chapter": "C",
+   "section": "C2",
+   "line": 4339,
+   "page": 27,
+   "context": "\u03c4 =4(\u03b1P /P )[1\u2212(\u03b1P /P )] (C2-2b)"
+  },
+  {
+   "label": "D2-1",
+   "chapter": "D",
+   "section": "D2",
+   "line": 4411,
+   "page": 28,
+   "context": "P =F A (D2-1)"
+  },
+  {
+   "label": "D2-2",
+   "chapter": "D",
+   "section": "D2",
+   "line": 4416,
+   "page": 28,
+   "context": "P =F A (D2-2)"
+  },
+  {
+   "label": "D3-1",
+   "chapter": "D",
+   "section": "D3",
+   "line": 4440,
+   "page": 29,
+   "context": "A =A U (D3-1)"
+  },
+  {
+   "label": "D5-1",
+   "chapter": "D",
+   "section": "D5",
+   "line": 4616,
+   "page": 31,
+   "context": "P =F (2tb )(D5-1)"
+  },
+  {
+   "label": "D5-2",
+   "chapter": "D",
+   "section": "D5",
+   "line": 4621,
+   "page": 31,
+   "context": "P =0.6F A (D5-2)"
+  },
+  {
+   "label": "E3-1",
+   "chapter": "E",
+   "section": "E3",
+   "line": 4779,
+   "page": 35,
+   "context": "P =F A (E3-1)"
+  },
+  {
+   "label": "E3-2",
+   "chapter": "E",
+   "section": "E3",
+   "line": 4788,
+   "page": 35,
+   "context": "F c F r = 0.658F e y (E3-2)"
+  },
+  {
+   "label": "E3-3",
+   "chapter": "E",
+   "section": "E3",
+   "line": 4792,
+   "page": 35,
+   "context": "F =0.877F (E3-3)"
+  },
+  {
+   "label": "E3-4",
+   "chapter": "E",
+   "section": "E3",
+   "line": 4808,
+   "page": 36,
+   "context": "(E3-4)"
+  },
+  {
+   "label": "E4-1",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4830,
+   "page": 36,
+   "context": "P =F A (E4-1)"
+  },
+  {
+   "label": "E4-2",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4838,
+   "page": 36,
+   "context": "F e =+ \u239d \u239c L cz 2 w GJ \u23a0 \u239f I x +I y (E4-2)"
+  },
+  {
+   "label": "E4-3",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4842,
+   "page": 36,
+   "context": "F e = \u239b \u239d \u239c F ey 2 + H F ez \u239e \u23a0 \u239f \u23a2 \u23a2 1\u2212 1\u2212 ( 4 F F ey + F F ez H )2 \u23a5 \u23a5 (E4-3)"
+  },
+  {
+   "label": "E4-4",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4851,
+   "page": 36,
+   "context": "(F e \u2212F ex )(F e \u2212F ey )(F e \u2212F ez )\u2212F e 2(F e \u2212F ey ) \u239d \u239c r o \u23a0 \u239f \u2212F e 2(F e \u2212F ex ) \u239d \u239c r o \u23a0 \u239f =0 (E4-4)"
+  },
+  {
+   "label": "E4-5",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4861,
+   "page": 37,
+   "context": "F = (E4-5)"
+  },
+  {
+   "label": "E4-6",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4868,
+   "page": 37,
+   "context": "F = (E4-6)"
+  },
+  {
+   "label": "E4-7",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4878,
+   "page": 37,
+   "context": "F ez = \u239d \u239c L cz 22 w +GJ \u23a0 \u239f A g r o (E4-7)"
+  },
+  {
+   "label": "E4-8",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4882,
+   "page": 37,
+   "context": "=1 \u2212 o o (E4-8)"
+  },
+  {
+   "label": "E4-9",
+   "chapter": "E",
+   "section": "E4",
+   "line": 4905,
+   "page": 37,
+   "context": "(cid:2) r o 2 = x o 2+y o 2+ I x +I y (E4-9)"
+  },
+  {
+   "label": "E5-1",
+   "chapter": "E",
+   "section": "E5",
+   "line": 4958,
+   "page": 38,
+   "context": "c =72+0.75 (E5-1)"
+  },
+  {
+   "label": "E5-2",
+   "chapter": "E",
+   "section": "E5",
+   "line": 4966,
+   "page": 38,
+   "context": "c =32+1.25 (E5-2)"
+  },
+  {
+   "label": "E5-3",
+   "chapter": "E",
+   "section": "E5",
+   "line": 4983,
+   "page": 38,
+   "context": "c =60+0.8 (E5-3)"
+  },
+  {
+   "label": "E5-4",
+   "chapter": "E",
+   "section": "E5",
+   "line": 4995,
+   "page": 39,
+   "context": "c =45+ (E5-4)"
+  },
+  {
+   "label": "E6-1",
+   "chapter": "E",
+   "section": "E6",
+   "line": 5038,
+   "page": 39,
+   "context": "\u239d \u239c r cc \u23a0 \u239f =+ \u239d \u239c r \u23a0 \u239f \u239d \u239c r \u23a0 \u239f (E6-1)"
+  },
+  {
+   "label": "E6-2a",
+   "chapter": "E",
+   "section": "E6",
+   "line": 5051,
+   "page": 40,
+   "context": "\u239c cc\u239f =\u239c \u239f (E6-2a)"
+  },
+  {
+   "label": "E6-2b",
+   "chapter": "E",
+   "section": "E6",
+   "line": 5060,
+   "page": 40,
+   "context": "\u239c c \u239f = \u239c c \u239f +\u239c i \u239f (E6-2b)"
+  },
+  {
+   "label": "E7-1",
+   "chapter": "E",
+   "section": "E7",
+   "line": 5171,
+   "page": 42,
+   "context": "P =F A (E7-1)"
+  },
+  {
+   "label": "E7-2",
+   "chapter": "E",
+   "section": "E7",
+   "line": 5196,
+   "page": 42,
+   "context": "b =b (E7-2)"
+  },
+  {
+   "label": "E7-3",
+   "chapter": "E",
+   "section": "E7",
+   "line": 5205,
+   "page": 42,
+   "context": "b e = b\u239d\u239c1\u2212 c 1 F el \u23a0\u239f F el (E7-3)"
+  },
+  {
+   "label": "E7-4",
+   "chapter": "E",
+   "section": "E7",
+   "line": 5224,
+   "page": 43,
+   "context": "c = 1 \u2212 1 \u2212 4c 1 (E7-4)"
+  },
+  {
+   "label": "E7-5",
+   "chapter": "E",
+   "section": "E7",
+   "line": 5232,
+   "page": 43,
+   "context": "F el = \u239d \u239cc 2 \u03bb r \u23a0 \u239f F y (E7-5)"
+  },
+  {
+   "label": "E7-6",
+   "chapter": "E",
+   "section": "E7",
+   "line": 5242,
+   "page": 43,
+   "context": "A =A (E7-6)"
+  },
+  {
+   "label": "E7-7",
+   "chapter": "E",
+   "section": "E7",
+   "line": 5249,
+   "page": 43,
+   "context": "A e = \u23a2 + \u23a5 Ag (E7-7)"
+  },
+  {
+   "label": "F1-1",
+   "chapter": "F",
+   "section": "F1",
+   "line": 5344,
+   "page": 46,
+   "context": "C = max (F1-1)"
+  },
+  {
+   "label": "F2-1",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5397,
+   "page": 47,
+   "context": "M =M = FZ (F2-1)"
+  },
+  {
+   "label": "F2-2",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5409,
+   "page": 47,
+   "context": "M n =C b \u23a1 \u23a3 \u23a2 \u23a2 M p \u2212 ( M p \u22120.7F y S x )\u239b \u239d \u239c L L b r \u2212 \u2212 L L p p \u239e \u23a0 \u239f \u23a4 \u23a6 \u23a5 \u23a5\u23a5 \u2264M p (F2-2)"
+  },
+  {
+   "label": "F2-3",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5412,
+   "page": 47,
+   "context": "M =F S \u2264 M (F2-3)"
+  },
+  {
+   "label": "F2-4",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5419,
+   "page": 47,
+   "context": "F cr = \u239bL b b \u239e2 1+0.078 S x h o \u239d \u239c r ts b \u23a0 \u239f (F2-4)"
+  },
+  {
+   "label": "F2-5",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5449,
+   "page": 48,
+   "context": "L py =1.76r (F2-5)"
+  },
+  {
+   "label": "F2-6",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5456,
+   "page": 48,
+   "context": "L rts =+1.95r 0.7F S h \u239d \u239c S h \u23a0 \u239f +6.76 \u239d \u239c E y \u23a0 \u239f (F2-6)"
+  },
+  {
+   "label": "F2-7",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5462,
+   "page": 48,
+   "context": "r ts 2 = y w (F2-7)"
+  },
+  {
+   "label": "F2-8a",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5467,
+   "page": 48,
+   "context": "c = 1 (F2-8a)"
+  },
+  {
+   "label": "F2-8b",
+   "chapter": "F",
+   "section": "F2",
+   "line": 5470,
+   "page": 48,
+   "context": "c= o y (F2-8b)"
+  },
+  {
+   "label": "F3-1",
+   "chapter": "F",
+   "section": "F3",
+   "line": 5521,
+   "page": 49,
+   "context": "M n =M p \u2212 ( M p \u22120.7F y S x )\u239b \u239d \u239c \u03bb \u03bb\u2212 \u2212 \u03bb \u03bb pf \u239e \u23a0 \u239f (F3-1)"
+  },
+  {
+   "label": "F3-2",
+   "chapter": "F",
+   "section": "F3",
+   "line": 5525,
+   "page": 49,
+   "context": "M = c x (F3-2)"
+  },
+  {
+   "label": "F4-1",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5565,
+   "page": 50,
+   "context": "M = R M (F4-1)"
+  },
+  {
+   "label": "F4-2",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5579,
+   "page": 50,
+   "context": "M n =\u2212C b \u23a1 \u23a3\u23a3 \u23a2 \u23a2 R pc M yc ( R pc M yc \u2212F L S xc )\u239b \u239d \u239c L L b r \u2212 \u2212 L L p p \u239e \u23a0 \u239f \u23a4 \u23a6 \u23a5 \u23a5 \u2264R pc M yc (F4-2)"
+  },
+  {
+   "label": "F4-3",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5582,
+   "page": 50,
+   "context": "M =F S \u2264R M (F4-3)"
+  },
+  {
+   "label": "F4-4",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5591,
+   "page": 51,
+   "context": "M = F S (F4-4)"
+  },
+  {
+   "label": "F4-5",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5596,
+   "page": 51,
+   "context": "F cr = \u239b b L b \u239e2 1+0.078 S xc h o \u239d \u239c r t b \u23a0 \u239f (F4-5)"
+  },
+  {
+   "label": "F4-6a",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5615,
+   "page": 51,
+   "context": "F =0.7F (F4-6a)"
+  },
+  {
+   "label": "F4-6b",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5622,
+   "page": 51,
+   "context": "F =F xt \u22650.5F (F4-6b)"
+  },
+  {
+   "label": "F4-7",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5633,
+   "page": 51,
+   "context": "L =1.1r (F4-7)"
+  },
+  {
+   "label": "F4-8",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5641,
+   "page": 51,
+   "context": "L rt =+1..95r F S h \u239d \u239c S h \u23a0 \u239f +676 \u239d \u239c E L \u23a0 \u239f (F4-8)"
+  },
+  {
+   "label": "F4-9a",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5657,
+   "page": 52,
+   "context": "R = p (F4-9a)"
+  },
+  {
+   "label": "F4-9b",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5667,
+   "page": 52,
+   "context": "R pc =\u23a2\u23a2 \u23a2\u23a3M y p c \u2212 \u239d \u239c M y p c \u22121 \u23a0 \u239f \u239d \u239c \u03bb rw \u2212\u03bb pw pw \u23a0 \u239f \u23a6 \u23a5 \u23a5 \u2264 M y p c (F4-9b)"
+  },
+  {
+   "label": "F4-10",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5670,
+   "page": 52,
+   "context": "R =1.0 (F4-10)"
+  },
+  {
+   "label": "F4-11",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5696,
+   "page": 52,
+   "context": "t (F4-11)"
+  },
+  {
+   "label": "F4-12",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5702,
+   "page": 52,
+   "context": "a = c w (F4-12)"
+  },
+  {
+   "label": "F4-13",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5726,
+   "page": 53,
+   "context": "M n =R pc M yc \u2212 ( R pc M yc \u2212F L S xc )\u239b \u239d \u239c \u03bb \u03bb\u2212 \u2212 \u03bb \u03bb pf \u239e \u23a0 \u239f (F4-13)"
+  },
+  {
+   "label": "F4-14",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5730,
+   "page": 53,
+   "context": "M = c xc (F4-14)"
+  },
+  {
+   "label": "F4-15",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5757,
+   "page": 53,
+   "context": "M =R M (F4-15)"
+  },
+  {
+   "label": "F4-16a",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5773,
+   "page": 53,
+   "context": "R = p (F4-16a)"
+  },
+  {
+   "label": "F4-16b",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5787,
+   "page": 54,
+   "context": "R pt = \u23a3 \u23a2 \u23a2M y p t \u2212 \u239d \u239c M y p t \u22121 \u23a0 \u239f \u239d \u239c \u03bb rw \u2212\u03bb pw pw \u23a0 \u239f \u23a6 \u23a5 \u23a5 \u2264 M y p t (F4-16b)"
+  },
+  {
+   "label": "F4-17",
+   "chapter": "F",
+   "section": "F4",
+   "line": 5790,
+   "page": 54,
+   "context": "R =1.0 (F4-17)"
+  },
+  {
+   "label": "F5-1",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5816,
+   "page": 54,
+   "context": "M =R F S (F5-1)"
+  },
+  {
+   "label": "F5-2",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5819,
+   "page": 54,
+   "context": "M =R F S (F5-2)"
+  },
+  {
+   "label": "F5-3",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5825,
+   "page": 54,
+   "context": "F cr =C b \u23a1 \u23a3 \u23a2 \u23a2 F y \u2212 ( 0.3F y )\u239b \u239d \u239c L L b r \u2212 \u2212 L L p p \u239e \u23a0 \u239f \u23a4 \u23a6 \u23a5 \u23a5 \u2264F y (F5-3)"
+  },
+  {
+   "label": "F5-4",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5829,
+   "page": 54,
+   "context": "F cr = \u239b b L \u239e2 \u2264F y (F5-4)"
+  },
+  {
+   "label": "F5-5",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5842,
+   "page": 55,
+   "context": "L r =\u03c0r t 0.7F (F5-5)"
+  },
+  {
+   "label": "F5-6",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5851,
+   "page": 55,
+   "context": "R pg =1\u2212 1,200+ w 300a \u239d \u239c t c \u22125..7 F \u23a0 \u239f \u226410 (F5-6)"
+  },
+  {
+   "label": "F5-7",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5857,
+   "page": 55,
+   "context": "M =R F S (F5-7)"
+  },
+  {
+   "label": "F5-8",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5862,
+   "page": 55,
+   "context": "F cr = \u23a1 \u23a3 \u23a2 \u23a2 F y \u2212 ( 0.3F y )\u239b \u239d \u239c \u03bb \u03bb rf \u2212 \u2212 \u03bb \u03bb p p f f \u239e \u23a0 \u239f \u23a4 \u23a6 \u23a5 \u23a5 (F5-8)"
+  },
+  {
+   "label": "F5-9",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5865,
+   "page": 55,
+   "context": "F = c (F5-9)"
+  },
+  {
+   "label": "F5-10",
+   "chapter": "F",
+   "section": "F5",
+   "line": 5891,
+   "page": 55,
+   "context": "M =F S (F5-10)"
+  },
+  {
+   "label": "F6-1",
+   "chapter": "F",
+   "section": "F6",
+   "line": 5904,
+   "page": 56,
+   "context": "M = M =F Z \u22641.6F S (F6-1)"
+  },
+  {
+   "label": "F6-2",
+   "chapter": "F",
+   "section": "F6",
+   "line": 5919,
+   "page": 56,
+   "context": "M n = M p \u2212 ( M p \u22120.7F y S y ) \u239b \u239d \u239c \u03bb \u03bb\u2212 \u2212 \u03bb \u03bb pf \u239e \u23a0 \u239f (F6-2)"
+  },
+  {
+   "label": "F6-3",
+   "chapter": "F",
+   "section": "F6",
+   "line": 5922,
+   "page": 56,
+   "context": "M =F S (F6-3)"
+  },
+  {
+   "label": "F6-4",
+   "chapter": "F",
+   "section": "F6",
+   "line": 5926,
+   "page": 56,
+   "context": "F = (F6-4)"
+  },
+  {
+   "label": "F7-1",
+   "chapter": "F",
+   "section": "F7",
+   "line": 5957,
+   "page": 57,
+   "context": "M = M =F Z (F7-1)"
+  },
+  {
+   "label": "F7-2",
+   "chapter": "F",
+   "section": "F7",
+   "line": 5964,
+   "page": 57,
+   "context": "M n =M p \u2212 ( M p \u2212F y S ) \u239b \u239c3..57 b F y \u221240 \u239e \u239f \u2264M p (F7-2)"
+  },
+  {
+   "label": "F7-3",
+   "chapter": "F",
+   "section": "F7",
+   "line": 5971,
+   "page": 57,
+   "context": "M =F S (F7-3)"
+  },
+  {
+   "label": "F7-4",
+   "chapter": "F",
+   "section": "F7",
+   "line": 5979,
+   "page": 57,
+   "context": "b ef =\u22121.92t \u239c1 \u239f \u2264b (F7-4)"
+  },
+  {
+   "label": "F7-5",
+   "chapter": "F",
+   "section": "F7",
+   "line": 5984,
+   "page": 57,
+   "context": "b ef =\u22121.92t \u239c1 \u239f \u2264 b (F7-5)"
+  },
+  {
+   "label": "F7-6",
+   "chapter": "F",
+   "section": "F7",
+   "line": 5994,
+   "page": 58,
+   "context": "M n =M p \u2212 ( M p \u2212F y S )\u239b \u239d \u239c0..305 t h F E y \u22120738 \u239e \u23a0 \u239f \u2264M p (F7-6)"
+  },
+  {
+   "label": "F7-7",
+   "chapter": "F",
+   "section": "F7",
+   "line": 6000,
+   "page": 58,
+   "context": "M = R F S (F7-7)"
+  },
+  {
+   "label": "F7-8",
+   "chapter": "F",
+   "section": "F7",
+   "line": 6003,
+   "page": 58,
+   "context": "M = R F S (F7-8)"
+  },
+  {
+   "label": "F7-9",
+   "chapter": "F",
+   "section": "F7",
+   "line": 6008,
+   "page": 58,
+   "context": "(F7-9)"
+  },
+  {
+   "label": "F7-10",
+   "chapter": "F",
+   "section": "F7",
+   "line": 6027,
+   "page": 58,
+   "context": "MM n =\u2212C b \u23a1 \u23a3 \u23a2 \u23a2 M p \u2212 ( p 0.7F y S x ) \u239b \u239d \u239c L L r b \u2212 \u2212 L L p p \u239e \u23a0 \u239f \u23a4 \u23a6 \u23a5 \u23a5 \u2264 M p (F7-10)"
+  },
+  {
+   "label": "F7-11",
+   "chapter": "F",
+   "section": "F7",
+   "line": 6031,
+   "page": 58,
+   "context": "M n =\u22642EC b L /r g M p (F7-11)"
+  },
+  {
+   "label": "F7-12",
+   "chapter": "F",
+   "section": "F7",
+   "line": 6040,
+   "page": 58,
+   "context": "L = 0.13Er g (F7-12)"
+  },
+  {
+   "label": "F7-13",
+   "chapter": "F",
+   "section": "F7",
+   "line": 6051,
+   "page": 59,
+   "context": "L r = 2Er y 0.7F g S (F7-13)"
+  },
+  {
+   "label": "F8-1",
+   "chapter": "F",
+   "section": "F8",
+   "line": 6068,
+   "page": 59,
+   "context": "M = M =F Z (F8-1)"
+  },
+  {
+   "label": "F8-2",
+   "chapter": "F",
+   "section": "F8",
+   "line": 6075,
+   "page": 59,
+   "context": "M ny = \u23a2\u23a5\u239bD\u239e +F S (F8-2)"
+  },
+  {
+   "label": "F8-3",
+   "chapter": "F",
+   "section": "F8",
+   "line": 6079,
+   "page": 59,
+   "context": "M =F S (F8-3)"
+  },
+  {
+   "label": "F8-4",
+   "chapter": "F",
+   "section": "F8",
+   "line": 6084,
+   "page": 59,
+   "context": "F = (F8-4)"
+  },
+  {
+   "label": "F9-1",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6101,
+   "page": 60,
+   "context": "M = M (F9-1)"
+  },
+  {
+   "label": "F9-2",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6105,
+   "page": 60,
+   "context": "M = F Z \u22641.6M (F9-2)"
+  },
+  {
+   "label": "F9-3",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6110,
+   "page": 60,
+   "context": "=F S (F9-3)"
+  },
+  {
+   "label": "F9-4",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6113,
+   "page": 60,
+   "context": "M = M (F9-4)"
+  },
+  {
+   "label": "F9-5",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6116,
+   "page": 60,
+   "context": "M = 1.5M (F9-5)"
+  },
+  {
+   "label": "F9-6",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6125,
+   "page": 60,
+   "context": "M n =M p \u2212(.M p \u2212 M y) \u239d \u239c L b \u2212 L p \u23a0 \u239f (F9-6)"
+  },
+  {
+   "label": "F9-7",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6129,
+   "page": 60,
+   "context": "M = M (F9-7)"
+  },
+  {
+   "label": "F9-8",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6133,
+   "page": 60,
+   "context": "L = 1.76r (F9-8)"
+  },
+  {
+   "label": "F9-9",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6138,
+   "page": 60,
+   "context": "L r = 1.95 \u239d \u239c F \u23a0 \u239f S y 2.36 \u239d \u239c E y \u23a0 \u239f J x + 1 (F9-9)"
+  },
+  {
+   "label": "F9-10",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6145,
+   "page": 61,
+   "context": "M cr = I y J B + 1+B2 (F9-10)"
+  },
+  {
+   "label": "F9-11",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6149,
+   "page": 61,
+   "context": "B = 2.3\u239c \u239f y (F9-11)"
+  },
+  {
+   "label": "F9-12",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6157,
+   "page": 61,
+   "context": "B = \u22122.3\u239c \u239f y (F9-12)"
+  },
+  {
+   "label": "F9-13",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6163,
+   "page": 61,
+   "context": "M = M \u2264M (F9-13)"
+  },
+  {
+   "label": "F9-14",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6176,
+   "page": 61,
+   "context": "M n M= \u23a3 \u23a2 \u23a2 M p \u2212(M p \u22120.7F y S xc ) \u239d \u239c \u03bb rf \u2212\u03bb p p f f \u23a0 \u239f \u23a6 \u23a5 \u23a5 \u22641.6 y (F9-14)"
+  },
+  {
+   "label": "F9-15",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6179,
+   "page": 61,
+   "context": "M = xc (F9-15)"
+  },
+  {
+   "label": "F9-16",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6211,
+   "page": 62,
+   "context": "M =F S (F9-16)"
+  },
+  {
+   "label": "F9-17",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6222,
+   "page": 62,
+   "context": "F =F (F9-17)"
+  },
+  {
+   "label": "F9-18",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6230,
+   "page": 62,
+   "context": "F = \u239c1.43\u22120.515 y\u239fF (F9-18)"
+  },
+  {
+   "label": "F9-19",
+   "chapter": "F",
+   "section": "F9",
+   "line": 6238,
+   "page": 62,
+   "context": "F cr = \u239b d\u239e2 (F9-19)"
+  },
+  {
+   "label": "F10-1",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6274,
+   "page": 63,
+   "context": "M = 1.5M (F10-1)"
+  },
+  {
+   "label": "F10-2",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6288,
+   "page": 63,
+   "context": "\u22641.5M (F10-2)"
+  },
+  {
+   "label": "F10-3",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6307,
+   "page": 63,
+   "context": "(F10-3)"
+  },
+  {
+   "label": "F10-4",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6315,
+   "page": 63,
+   "context": "M cr = z b \u23a2\u23a2 1+ \u239d \u239c4.4 w z \u23a0 \u239f + 4.4 w z \u23a5 (F10-4)"
+  },
+  {
+   "label": "F10-5a",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6347,
+   "page": 64,
+   "context": "M cr =+ L b 22 b \u23a3 \u23a2 1 0.88 \u239d \u239c b b \u23a0 \u239f \u22121 \u23a6 \u23a5 (F10-5a)"
+  },
+  {
+   "label": "F10-5b",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6351,
+   "page": 64,
+   "context": "M cr =+ L b 22 b \u23a3 \u23a2 1 0.88 \u239d \u239c b b \u23a0 \u239f +1 \u23a6 \u23a5 (F10-5b)"
+  },
+  {
+   "label": "F10-6",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6382,
+   "page": 65,
+   "context": "M n =\u2212F y S c \u23a3 \u23a22.43 1.72 \u239d \u239c t\u23a0 \u239f E y \u23a6 \u23a5 (F10-6)"
+  },
+  {
+   "label": "F10-7",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6384,
+   "page": 65,
+   "context": "M =F S (F10-7)"
+  },
+  {
+   "label": "F10-8",
+   "chapter": "F",
+   "section": "F10",
+   "line": 6388,
+   "page": 65,
+   "context": "F = (F10-8)"
+  },
+  {
+   "label": "F11-1",
+   "chapter": "F",
+   "section": "F11",
+   "line": 6410,
+   "page": 65,
+   "context": "M =M =F Z \u22641.6F S (F11-1)"
+  },
+  {
+   "label": "F11-2",
+   "chapter": "F",
+   "section": "F11",
+   "line": 6450,
+   "page": 66,
+   "context": "(F11-2)"
+  },
+  {
+   "label": "F11-3",
+   "chapter": "F",
+   "section": "F11",
+   "line": 6460,
+   "page": 66,
+   "context": "M =F S \u2264M (F11-3)"
+  },
+  {
+   "label": "F11-4",
+   "chapter": "F",
+   "section": "F11",
+   "line": 6464,
+   "page": 66,
+   "context": "F = b (F11-4)"
+  },
+  {
+   "label": "F12-1",
+   "chapter": "F",
+   "section": "F12",
+   "line": 6476,
+   "page": 66,
+   "context": "M =F S (F12-1)"
+  },
+  {
+   "label": "F12-2",
+   "chapter": "F",
+   "section": "F12",
+   "line": 6486,
+   "page": 66,
+   "context": "F =F (F12-2)"
+  },
+  {
+   "label": "F12-3",
+   "chapter": "F",
+   "section": "F12",
+   "line": 6489,
+   "page": 66,
+   "context": "F =F \u2264F (F12-3)"
+  },
+  {
+   "label": "F12-4",
+   "chapter": "F",
+   "section": "F12",
+   "line": 6504,
+   "page": 67,
+   "context": "F =F \u2264F (F12-4)"
+  },
+  {
+   "label": "F13-1",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6523,
+   "page": 67,
+   "context": "M = u fn S (F13-1)"
+  },
+  {
+   "label": "F13-2",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6544,
+   "page": 67,
+   "context": "0..1\u2264 yc \u226409 (F13-2)"
+  },
+  {
+   "label": "F13-3",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6556,
+   "page": 68,
+   "context": "\u239c \u239f =12.0 (F13-3)"
+  },
+  {
+   "label": "F13-4",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6563,
+   "page": 68,
+   "context": "\u239c \u239f = (F13-4)"
+  },
+  {
+   "label": "F13-5",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6601,
+   "page": 69,
+   "context": "a\u2032=w (F13-5)"
+  },
+  {
+   "label": "F13-6",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6606,
+   "page": 69,
+   "context": "a\u2032=1.5w (F13-6)"
+  },
+  {
+   "label": "F13-7",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6608,
+   "page": 69,
+   "context": "a\u2032=2w (F13-7)"
+  },
+  {
+   "label": "F13-8",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6624,
+   "page": 69,
+   "context": "L m = \u23a3 \u23a20.12+0.076 \u239d \u239c M 1 \u23a0 \u239f \u23a6 \u23a5 \u239d \u239c F \u23a0 \u239fr y (F13-8)"
+  },
+  {
+   "label": "F13-9",
+   "chapter": "F",
+   "section": "F13",
+   "line": 6628,
+   "page": 69,
+   "context": "L m = \u23a3 \u23a20.17+0.10 \u239d \u239c M 1 \u23a0 \u239f \u23a6 \u23a5 \u239d \u239c F \u23a0 \u239fr y \u22650.100 \u239d \u239c F \u23a0 \u239fr y (F13-9)"
+  },
+  {
+   "label": "G2-1",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6681,
+   "page": 70,
+   "context": "V = 0.6F A C (G2-1)"
+  },
+  {
+   "label": "G2-2",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6697,
+   "page": 71,
+   "context": "C =1.0 (G2-2)"
+  },
+  {
+   "label": "G2-3",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6713,
+   "page": 71,
+   "context": "C =1.0 (G2-3)"
+  },
+  {
+   "label": "G2-4",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6723,
+   "page": 71,
+   "context": "C = v y (G2-4)"
+  },
+  {
+   "label": "G2-5",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6734,
+   "page": 71,
+   "context": "k = 5+ (G2-5)"
+  },
+  {
+   "label": "G2-6",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6754,
+   "page": 72,
+   "context": "V =0.6F A (G2-6)"
+  },
+  {
+   "label": "G2-7",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6781,
+   "page": 72,
+   "context": "(G2-7)"
+  },
+  {
+   "label": "G2-8",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6784,
+   "page": 72,
+   "context": "V n A w =0.6F y \u23a3 \u23a2 \u23a2 C v2 + 1.15 \u23a1 \u23a3a/h+ 1 v2 +( a/h )2 \u23a4 \u23a6 \u23a6 \u23a5 \u23a5 (G2-8)"
+  },
+  {
+   "label": "G2-9",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6790,
+   "page": 72,
+   "context": "C =1.0 (G2-9)"
+  },
+  {
+   "label": "G2-10",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6795,
+   "page": 72,
+   "context": "C = v y (G2-10)"
+  },
+  {
+   "label": "G2-11",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6802,
+   "page": 72,
+   "context": "C = v (G2-11)"
+  },
+  {
+   "label": "G2-12",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6843,
+   "page": 73,
+   "context": "(d) b t \u22640.56 (G2-12)"
+  },
+  {
+   "label": "G2-13",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6846,
+   "page": 73,
+   "context": "(e) I st \u2265I st2 +( I st1 \u2212I st2 )\u03c1 w (G2-13)"
+  },
+  {
+   "label": "G2-14",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6857,
+   "page": 73,
+   "context": "I st1 = 40 st \u239d \u239c E yw \u23a0 \u239f (G2-14)"
+  },
+  {
+   "label": "G2-15",
+   "chapter": "G",
+   "section": "G2",
+   "line": 6863,
+   "page": 73,
+   "context": "I st2 = \u23a2 \u23a2\u23a2 ( 2.5 )2 \u22122 \u23a5 \u23a5 b p t w 3 \u22650.5b p t w 3 (G2-15)"
+  },
+  {
+   "label": "G3-1",
+   "chapter": "G",
+   "section": "G3",
+   "line": 6899,
+   "page": 74,
+   "context": "V = 0.6FbtC (G3-1)"
+  },
+  {
+   "label": "G4-1",
+   "chapter": "G",
+   "section": "G4",
+   "line": 6912,
+   "page": 74,
+   "context": "V = 0.6FA C (G4-1)"
+  },
+  {
+   "label": "G5-1",
+   "chapter": "G",
+   "section": "G5",
+   "line": 6947,
+   "page": 75,
+   "context": "V =F A /2(G5-1)"
+  },
+  {
+   "label": "G5-2a",
+   "chapter": "G",
+   "section": "G5",
+   "line": 6953,
+   "page": 75,
+   "context": "F = (G5-2a)"
+  },
+  {
+   "label": "G5-2b",
+   "chapter": "G",
+   "section": "G5",
+   "line": 6959,
+   "page": 75,
+   "context": "F = (G5-2b)"
+  },
+  {
+   "label": "G6-1",
+   "chapter": "G",
+   "section": "G6",
+   "line": 6982,
+   "page": 75,
+   "context": "V =0.6FbtC (G6-1)"
+  },
+  {
+   "label": "H1-1a",
+   "chapter": "H",
+   "section": "H1",
+   "line": 7035,
+   "page": 77,
+   "context": "r + \u239c rx + ry \u239f \u22641.0 (H1-1a)"
+  },
+  {
+   "label": "H1-1b",
+   "chapter": "H",
+   "section": "H1",
+   "line": 7043,
+   "page": 77,
+   "context": "r + \u239c rx + ry \u239f \u22641.0 (H1-1b)"
+  },
+  {
+   "label": "H1-2",
+   "chapter": "H",
+   "section": "H1",
+   "line": 7154,
+   "page": 78,
+   "context": "ey L2 (H1-2)"
+  },
+  {
+   "label": "H1-3",
+   "chapter": "H",
+   "section": "H1",
+   "line": 7204,
+   "page": 80,
+   "context": "r \u239c1.5\u22120.5 r \u239f +\u239c rx \u239f \u22641.0 (H1-3)"
+  },
+  {
+   "label": "H2-1",
+   "chapter": "H",
+   "section": "H2",
+   "line": 7228,
+   "page": 80,
+   "context": "ra + rbw + rbz \u22641.0 (H2-1)"
+  },
+  {
+   "label": "H3-1",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7319,
+   "page": 82,
+   "context": "T =F C (H3-1)"
+  },
+  {
+   "label": "H3-2a",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7330,
+   "page": 82,
+   "context": "(1) F = (H3-2a)"
+  },
+  {
+   "label": "H3-2b",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7337,
+   "page": 82,
+   "context": "(2) F = (H3-2b)"
+  },
+  {
+   "label": "H3-3",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7352,
+   "page": 82,
+   "context": "F =0.6F (H3-3)"
+  },
+  {
+   "label": "H3-4",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7359,
+   "page": 82,
+   "context": "F = (H3-4)"
+  },
+  {
+   "label": "H3-5",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7367,
+   "page": 82,
+   "context": "F = (H3-5)"
+  },
+  {
+   "label": "H3-6",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7393,
+   "page": 83,
+   "context": "\u239c r + r \u239f+\u239c r + r \u239f \u22641.0 (H3-6)"
+  },
+  {
+   "label": "H3-7",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7458,
+   "page": 84,
+   "context": "F =F (H3-7)"
+  },
+  {
+   "label": "H3-8",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7461,
+   "page": 84,
+   "context": "F =0.6F (H3-8)"
+  },
+  {
+   "label": "H3-9",
+   "chapter": "H",
+   "section": "H3",
+   "line": 7464,
+   "page": 84,
+   "context": "F =F (H3-9)"
+  },
+  {
+   "label": "H4-1",
+   "chapter": "H",
+   "section": "H4",
+   "line": 7476,
+   "page": 84,
+   "context": "r + rx \u22641.0 (H4-1)"
+  },
+  {
+   "label": "I2-1",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7790,
+   "page": 91,
+   "context": "\u03c1 = sr (I2-1)"
+  },
+  {
+   "label": "I2-2",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7818,
+   "page": 91,
+   "context": "\u239f (I2-2)"
+  },
+  {
+   "label": "I2-3",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7821,
+   "page": 91,
+   "context": "P e P =0.877P (I2-3)"
+  },
+  {
+   "label": "I2-4",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7824,
+   "page": 91,
+   "context": "P no = F y A s ++F ysr A sr 0.85f c \u2032A c (I2-4)"
+  },
+  {
+   "label": "I2-5",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7828,
+   "page": 91,
+   "context": "=\u03c02(EI )/L 2 (I2-5)"
+  },
+  {
+   "label": "I2-6",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7844,
+   "page": 92,
+   "context": "=EI + EI + C E I (I2-6)"
+  },
+  {
+   "label": "I2-7",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7850,
+   "page": 92,
+   "context": "= 0.25+3\u239c s sr \u239f \u22640.7 (I2-7)"
+  },
+  {
+   "label": "I2-8",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7883,
+   "page": 92,
+   "context": "P =F A +F A (I2-8)"
+  },
+  {
+   "label": "I2-9a",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7916,
+   "page": 93,
+   "context": "P =P (I2-9a)"
+  },
+  {
+   "label": "I2-9b",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7920,
+   "page": 93,
+   "context": "P p = F y A s +C 2 f c \u2032 \u239d \u239cA c +A sr E s \u23a0 \u239f (I2-9b)"
+  },
+  {
+   "label": "I2-9c",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7925,
+   "page": 93,
+   "context": "P =P \u2212 P p \u2212P y ( \u03bb\u2212\u03bb )2 (I2-9c)"
+  },
+  {
+   "label": "I2-9d",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7936,
+   "page": 93,
+   "context": "P y =F y A s +0.7f c \u2032 \u239d \u239cA c +A sr E s \u23a0 \u239f (I2-9d)"
+  },
+  {
+   "label": "I2-9e",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7940,
+   "page": 93,
+   "context": "P no =F cr A s +0.7f c \u2032 \u239d \u239cA c +A sr E s \u23a0 \u239f (I2-9e)"
+  },
+  {
+   "label": "I2-10",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7945,
+   "page": 93,
+   "context": "F = s (I2-10)"
+  },
+  {
+   "label": "I2-11",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7956,
+   "page": 94,
+   "context": "F cr = \u23a1\u239bD\u239e F y \u23a40.2 (I2-11)"
+  },
+  {
+   "label": "I2-12",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7961,
+   "page": 94,
+   "context": "EI =EI +EI +C E I (I2-12)"
+  },
+  {
+   "label": "I2-13",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7968,
+   "page": 94,
+   "context": "= 0.45 +3\u239c s sr \u239f \u22640.9 (I2-13)"
+  },
+  {
+   "label": "I2-14",
+   "chapter": "I",
+   "section": "I2",
+   "line": 7976,
+   "page": 94,
+   "context": "P =A F +A F (I2-14)"
+  },
+  {
+   "label": "I3-1a",
+   "chapter": "I",
+   "section": "I3",
+   "line": 8101,
+   "page": 96,
+   "context": "0.85 (I3-1a)"
+  },
+  {
+   "label": "I3-1b",
+   "chapter": "I",
+   "section": "I3",
+   "line": 8107,
+   "page": 96,
+   "context": "(I3-1b)"
+  },
+  {
+   "label": "I3-1c",
+   "chapter": "I",
+   "section": "I3",
+   "line": 8111,
+   "page": 96,
+   "context": "(I3-1c)"
+  },
+  {
+   "label": "I3-2a",
+   "chapter": "I",
+   "section": "I3",
+   "line": 8138,
+   "page": 96,
+   "context": "(I3-2a)"
+  },
+  {
+   "label": "I3-2b",
+   "chapter": "I",
+   "section": "I3",
+   "line": 8152,
+   "page": 96,
+   "context": "(I3-2b)"
+  },
+  {
+   "label": "I3-3a",
+   "chapter": "I",
+   "section": "I3",
+   "line": 8190,
+   "page": 96,
+   "context": "(I3-3a)"
+  },
+  {
+   "label": "I3-3b",
+   "chapter": "I",
+   "section": "I3",
+   "line": 8199,
+   "page": 96,
+   "context": "n p p y \uf8ed \uf8ec \u03bb r \u2212\u03bb p\uf8f8 \uf8f7 (I3-3b)"
+  },
+  {
+   "label": "I5-1a",
+   "chapter": "I",
+   "section": "I5",
+   "line": 8265,
+   "page": 99,
+   "context": "P r + 1\u2212c p \u239b \u239c M r \u239e \u239f \u2264 1.0 (I5-1a)"
+  },
+  {
+   "label": "I5-1b",
+   "chapter": "I",
+   "section": "I5",
+   "line": 8274,
+   "page": 99,
+   "context": "\u239b \u239c 1\u2212c m \u239e \u239f \u239b \u239c P r \u239e \u239f + M r \u2264 1.0 (I5-1b)"
+  },
+  {
+   "label": "I5-2",
+   "chapter": "I",
+   "section": "I5",
+   "line": 8362,
+   "page": 100,
+   "context": "sr A f\u2018 (I5-2)"
+  },
+  {
+   "label": "I6-1",
+   "chapter": "I",
+   "section": "I6",
+   "line": 8393,
+   "page": 100,
+   "context": "(1 / ) (I6-1)"
+  },
+  {
+   "label": "I6-2a",
+   "chapter": "I",
+   "section": "I6",
+   "line": 8419,
+   "page": 102,
+   "context": "V\u2032=P (F A /P ) (I6-2a)"
+  },
+  {
+   "label": "I6-2b",
+   "chapter": "I",
+   "section": "I6",
+   "line": 8422,
+   "page": 102,
+   "context": "V\u2032=P (F A /P ) (I6-2b)"
+  },
+  {
+   "label": "I6-3",
+   "chapter": "I",
+   "section": "I6",
+   "line": 8455,
+   "page": 103,
+   "context": "R =1.7f\u2032A (I6-3)"
+  },
+  {
+   "label": "I6-4",
+   "chapter": "I",
+   "section": "I6",
+   "line": 8468,
+   "page": 103,
+   "context": "R =\u03a3Q (I6-4)"
+  },
+  {
+   "label": "I6-5",
+   "chapter": "I",
+   "section": "I6",
+   "line": 8479,
+   "page": 103,
+   "context": "R =p L F (I6-5)"
+  },
+  {
+   "label": "I8-1",
+   "chapter": "I",
+   "section": "I8",
+   "line": 8548,
+   "page": 105,
+   "context": "Q =0.5A f\u2032E \u2264 R R A F (I8-1)"
+  },
+  {
+   "label": "I8-2",
+   "chapter": "I",
+   "section": "I8",
+   "line": 8628,
+   "page": 106,
+   "context": "Q =0.3(t +0.5t )l f\u2032E (I8-2)"
+  },
+  {
+   "label": "I8-3",
+   "chapter": "I",
+   "section": "I8",
+   "line": 8730,
+   "page": 109,
+   "context": "Q =F A (I8-3)"
+  },
+  {
+   "label": "I8-4",
+   "chapter": "I",
+   "section": "I8",
+   "line": 8765,
+   "page": 109,
+   "context": "Q =F A (I8-4)"
+  },
+  {
+   "label": "I8-5",
+   "chapter": "I",
+   "section": "I8",
+   "line": 8805,
+   "page": 110,
+   "context": "\u239c rt \u239f +\u239c rv \u239f \u22641.0 (I8-5)"
+  },
+  {
+   "label": "J2-1",
+   "chapter": "J",
+   "section": "J2",
+   "line": 9214,
+   "page": 120,
+   "context": "\u03b2=1.2 \u22120.002(l/w) \u2264 1.0 (J2-1)"
+  },
+  {
+   "label": "J2-2",
+   "chapter": "J",
+   "section": "J2",
+   "line": 9302,
+   "page": 122,
+   "context": "R =F A (J2-2)"
+  },
+  {
+   "label": "J2-3",
+   "chapter": "J",
+   "section": "J2",
+   "line": 9305,
+   "page": 122,
+   "context": "R =F A (J2-3)"
+  },
+  {
+   "label": "J2-4",
+   "chapter": "J",
+   "section": "J2",
+   "line": 9327,
+   "page": 122,
+   "context": "R =F A (J2-4)"
+  },
+  {
+   "label": "J2-5",
+   "chapter": "J",
+   "section": "J2",
+   "line": 9330,
+   "page": 122,
+   "context": "F =0.60F (1.0 +0.50sin1.5\u03b8), ksi (MPa) (J2-5)"
+  },
+  {
+   "label": "J2-6a",
+   "chapter": "J",
+   "section": "J2",
+   "line": 9465,
+   "page": 124,
+   "context": "(i) R =R + R (J2-6a)"
+  },
+  {
+   "label": "J2-6b",
+   "chapter": "J",
+   "section": "J2",
+   "line": 9468,
+   "page": 124,
+   "context": "(ii) R =0.85 R + 1.5R (J2-6b)"
+  },
+  {
+   "label": "J3-1",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9764,
+   "page": 131,
+   "context": "R =F A (J3-1)"
+  },
+  {
+   "label": "J3-2",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9854,
+   "page": 132,
+   "context": "(J3-2)"
+  },
+  {
+   "label": "J3-3a",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9866,
+   "page": 134,
+   "context": "= 1.3F \u2212 F nt f \u2264F (LRFD) (J3-3a)"
+  },
+  {
+   "label": "J3-3b",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9870,
+   "page": 134,
+   "context": "= 1.3F \u2212\u2264 nt f F (ASD) (J3-3b)"
+  },
+  {
+   "label": "J3-4",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9896,
+   "page": 134,
+   "context": "R = \u03bcD hT n (J3-4)"
+  },
+  {
+   "label": "J3-5a",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9941,
+   "page": 135,
+   "context": "k =1 \u2212 u(LRF\u2265D0) (J3-5a)"
+  },
+  {
+   "label": "J3-5b",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9946,
+   "page": 135,
+   "context": "k =1\u2212 a \u2265 0 (ASD) (J3-5b)"
+  },
+  {
+   "label": "J3-6a",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9974,
+   "page": 136,
+   "context": "R =2.4dtF (J3-6a)"
+  },
+  {
+   "label": "J3-6b",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9978,
+   "page": 136,
+   "context": "R =3.0dtF (J3-6b)"
+  },
+  {
+   "label": "J3-6c",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9983,
+   "page": 136,
+   "context": "R =1.2l tF (J3-6c)"
+  },
+  {
+   "label": "J3-6d",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9987,
+   "page": 136,
+   "context": "R =1.5l tF (J3-6d)"
+  },
+  {
+   "label": "J3-6e",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9992,
+   "page": 136,
+   "context": "R =2.0dtF (J3-6e)"
+  },
+  {
+   "label": "J3-6f",
+   "chapter": "J",
+   "section": "J3",
+   "line": 9995,
+   "page": 136,
+   "context": "R =1.0l tF (J3-6f)"
+  },
+  {
+   "label": "J4-1",
+   "chapter": "J",
+   "section": "J4",
+   "line": 10030,
+   "page": 137,
+   "context": "R =F A (J4-1)"
+  },
+  {
+   "label": "J4-2",
+   "chapter": "J",
+   "section": "J4",
+   "line": 10034,
+   "page": 137,
+   "context": "R =F A (J4-2)"
+  },
+  {
+   "label": "J4-3",
+   "chapter": "J",
+   "section": "J4",
+   "line": 10046,
+   "page": 137,
+   "context": "R =0.60F A (J4-3)"
+  },
+  {
+   "label": "J4-4",
+   "chapter": "J",
+   "section": "J4",
+   "line": 10053,
+   "page": 137,
+   "context": "R =0.60F A (J4-4)"
+  },
+  {
+   "label": "J4-5",
+   "chapter": "J",
+   "section": "J4",
+   "line": 10067,
+   "page": 138,
+   "context": "R =0.60F A +U F A \u22640.60F A +U F A (J4-5)"
+  },
+  {
+   "label": "J4-6",
+   "chapter": "J",
+   "section": "J4",
+   "line": 10085,
+   "page": 138,
+   "context": "P =F A (J4-6)"
+  },
+  {
+   "label": "J7-1",
+   "chapter": "J",
+   "section": "J7",
+   "line": 10158,
+   "page": 140,
+   "context": "R =1.8F A (J7-1)"
+  },
+  {
+   "label": "J7-2",
+   "chapter": "J",
+   "section": "J7",
+   "line": 10168,
+   "page": 140,
+   "context": "R = y b (J7-2)"
+  },
+  {
+   "label": "J7-3",
+   "chapter": "J",
+   "section": "J7",
+   "line": 10177,
+   "page": 140,
+   "context": "R = y b (J7-3)"
+  },
+  {
+   "label": "J8-1",
+   "chapter": "J",
+   "section": "J8",
+   "line": 10205,
+   "page": 141,
+   "context": "P =0.85f\u2032A (J8-1)"
+  },
+  {
+   "label": "J8-2",
+   "chapter": "J",
+   "section": "J8",
+   "line": 10208,
+   "page": 141,
+   "context": "P =0.8/5f\u2032A. A A \u226417f\u2032A (J8-2)"
+  },
+  {
+   "label": "J10-1",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10272,
+   "page": 142,
+   "context": "R =6.25F t2 (J10-1)"
+  },
+  {
+   "label": "J10-2",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10301,
+   "page": 143,
+   "context": "R =F t (5k +l ) (J10-2)"
+  },
+  {
+   "label": "J10-3",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10305,
+   "page": 143,
+   "context": "R =F t (2.5k +l ) (J10-3)"
+  },
+  {
+   "label": "J10-4",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10330,
+   "page": 143,
+   "context": "\u23a5 \u23a5 EF t yww t f Q f (J10-4)"
+  },
+  {
+   "label": "J10-5a",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10344,
+   "page": 144,
+   "context": "\u23a5 \u23a5 EF t yww t f Q f (J10-5a)"
+  },
+  {
+   "label": "J10-5b",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10348,
+   "page": 144,
+   "context": "R nw =+ 0.40t2\u2212 \u23a1 \u23a2 \u23a2 1 \u239b \u239d \u239c 4 d l bw 0.2 \u239e \u23a0 \u239f \u239b \u239d \u239c t t \u239e \u23a0 \u239f 1.5 \u23a5\u23a5 \u23a4 \u23a5 EF t yw t f Q f (J10-5b)"
+  },
+  {
+   "label": "J10-6",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10369,
+   "page": 144,
+   "context": "R n =+ C r h t w 3 2 t f \u23a1 \u23a3 \u23a2 \u23a2 1 0.4 \u239b \u239d \u239c L h b / / t b w f \u239e \u23a0 \u239f 3\u23a4 \u23a6 \u23a5 \u23a5 (J10-6)"
+  },
+  {
+   "label": "J10-7",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10379,
+   "page": 144,
+   "context": "R n = C r h t w 3 2 t f \u23a1 \u23a3 \u23a2 \u23a2 0.4 \u239b \u239d \u239c L h b / / t b w f \u239e \u23a0 \u239f 3\u23a4 \u23a6 \u23a5 \u23a5 (J10-7)"
+  },
+  {
+   "label": "J10-8",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10417,
+   "page": 145,
+   "context": "R = \u239c w yw\u239fQ (J10-8)"
+  },
+  {
+   "label": "J10-9",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10445,
+   "page": 146,
+   "context": "R =0.60F d t (J10-9)"
+  },
+  {
+   "label": "J10-10",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10450,
+   "page": 146,
+   "context": "R ny =\u2212 c 0 w .6.0Fd t \u239d \u239c14 P r \u23a0 \u239f (J10-10)"
+  },
+  {
+   "label": "J10-11",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10457,
+   "page": 146,
+   "context": "R ny = c +0 w .60F d t \u239c1 cf cf \u239f (J10-11)"
+  },
+  {
+   "label": "J10-12",
+   "chapter": "J",
+   "section": "J10",
+   "line": 10463,
+   "page": 146,
+   "context": "R ny =+ c 0 w .6.0Fd t \u239d \u239c1 d d cf t cf \u23a0 \u239f \u239d \u239c19\u2212 P r \u23a0 \u239f (J10-12)"
+  },
+  {
+   "label": "K1-1",
+   "chapter": "K",
+   "section": "K1",
+   "line": 10640,
+   "page": 150,
+   "context": "B = \u239c \u239f \u239c y \u239f B \u2264 B (K1-1)"
+  },
+  {
+   "label": "K2-1b",
+   "chapter": "K",
+   "section": "K2",
+   "line": 10676,
+   "page": 151,
+   "context": "\u239f \u239f f (K2-1b)"
+  },
+  {
+   "label": "K2-1a",
+   "chapter": "K",
+   "section": "K2",
+   "line": 10677,
+   "page": 151,
+   "context": "(K2-1a)"
+  },
+  {
+   "label": "K2-2a",
+   "chapter": "K",
+   "section": "K2",
+   "line": 10708,
+   "page": 151,
+   "context": "(K2-2a)"
+  },
+  {
+   "label": "K2-2b",
+   "chapter": "K",
+   "section": "K2",
+   "line": 10709,
+   "page": 151,
+   "context": "CORRECTED from K2-2a: Table K2.1's longitudinal-plate row prints (K2-2a) for the axial equation and (K2-2b) for Mn = 0.8*lb*Rn. The dump emits (K2-2a) twice; the label (K2-2b) is legible interleaved down the mangled cell as '(K' '2' '-2' 'b' ')'. Table K2.1's transverse-plate row above it shows the same two-label pattern extracted correctly as K2-1b/K2-1a, confirming the layout."
+  },
+  {
+   "label": "K2-3",
+   "chapter": "K",
+   "section": "K2",
+   "line": 10714,
+   "page": 151,
+   "context": "=1.0 \u22120.3U(1 +U) for HSS (connecting surface) in compression (K2-3)"
+  },
+  {
+   "label": "K2-4",
+   "chapter": "K",
+   "section": "K2",
+   "line": 10716,
+   "page": 151,
+   "context": "U= ro + ro (K2-4)"
+  },
+  {
+   "label": "K3-1",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10844,
+   "page": 154,
+   "context": "P =0.6F t\u03c0D \u239c \u239f (K3-1)"
+  },
+  {
+   "label": "K3-2",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10849,
+   "page": 154,
+   "context": "Psin\u03b8\u03b2=+F\u03b3t223.10215.6 . Q (K3-2)"
+  },
+  {
+   "label": "K3-3",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10854,
+   "page": 154,
+   "context": "P ny sin\u03b8=F t2 \u239d \u239c 1\u22120.81\u03b2\u23a0 \u239fQ f (K3-3)"
+  },
+  {
+   "label": "K3-4",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10857,
+   "page": 154,
+   "context": "(P sin\u03b8) (K3-4)"
+  },
+  {
+   "label": "K3-5",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10863,
+   "page": 154,
+   "context": "=(Pnsin \u03b8 )compression branch (K3-5)"
+  },
+  {
+   "label": "K3-6",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10888,
+   "page": 154,
+   "context": "\u23a5 (K3-6)"
+  },
+  {
+   "label": "K3-7",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10925,
+   "page": 155,
+   "context": "(K3-7)"
+  },
+  {
+   "label": "K3-8",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10931,
+   "page": 155,
+   "context": "eop) (K3-8)"
+  },
+  {
+   "label": "K3-9",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10941,
+   "page": 155,
+   "context": "Pn =Fybtb(2Hb +Bb +Be \u22124tb) (K3-9)"
+  },
+  {
+   "label": "K3-10",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10961,
+   "page": 156,
+   "context": "\u23a5\u23a5 (K3-10)"
+  },
+  {
+   "label": "K3-11",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10963,
+   "page": 156,
+   "context": "Pn,i =Fybitbi(2Hbi \u22124tbi +Bei +Bej) (K3-11)"
+  },
+  {
+   "label": "K3-12",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10967,
+   "page": 156,
+   "context": "Pn,i =Fybitbi(2Hbi \u22124tbi +Bbi +Bej) (K3-12)"
+  },
+  {
+   "label": "K3-13",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10988,
+   "page": 156,
+   "context": "\u239f (K3-13)"
+  },
+  {
+   "label": "K3-14",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10993,
+   "page": 156,
+   "context": "=1.3\u22120.4 \u22641.0 (K3-14)"
+  },
+  {
+   "label": "K3-15",
+   "chapter": "K",
+   "section": "K3",
+   "line": 10997,
+   "page": 156,
+   "context": "= 1.3\u22120.4 \u22641.0 (K3-15)"
+  },
+  {
+   "label": "K3-16",
+   "chapter": "K",
+   "section": "K3",
+   "line": 11008,
+   "page": 156,
+   "context": "\u03b2 eff =\u23a1 \u23a3\u23a2 ( B b +H b ) compressionbranch + ( B b +H b ) tensionbranch \u23a4 \u23a6\u23a5 4B (K3-16)"
+  },
+  {
+   "label": "K3-17",
+   "chapter": "K",
+   "section": "K3",
+   "line": 11010,
+   "page": 156,
+   "context": "\u03b2 = \u2264\u03b2 (K3-17)"
+  },
+  {
+   "label": "K5-1",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11092,
+   "page": 158,
+   "context": "R orP =F t l (K5-1)"
+  },
+  {
+   "label": "K5-2",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11094,
+   "page": 158,
+   "context": "M =F S (K5-2)"
+  },
+  {
+   "label": "K5-3",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11096,
+   "page": 158,
+   "context": "M =F S (K5-3)"
+  },
+  {
+   "label": "K4-1",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11123,
+   "page": 159,
+   "context": "MFtsin\u03b8\u03b3=D5\u03b2.3Q9 2 0.5 (K4-1)"
+  },
+  {
+   "label": "K4-2",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11129,
+   "page": 159,
+   "context": "M =0.6FtD2\u239c \u239f (K4-2)"
+  },
+  {
+   "label": "K4-3",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11134,
+   "page": 159,
+   "context": "M n-op = F y s t in 2D \u03b8\u03b2 b \u239b \u239d \u239c 1\u2212 3 0 . . 0 81 \u239e \u23a0 \u239fQ f (K4-3)"
+  },
+  {
+   "label": "K4-4",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11139,
+   "page": 159,
+   "context": "M =0.6FtD2\u239c \u239f (K4-4)"
+  },
+  {
+   "label": "K4-5",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11144,
+   "page": 159,
+   "context": "LRFD: [Pu/(\u03c6Pn)]+[Mr-ip/(\u03c6Mn-ip)]2+[Mr-op/(\u03c6Mn-op)]\u22641.0 (K4-5)"
+  },
+  {
+   "label": "K4-6",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11145,
+   "page": 159,
+   "context": "ASD: [Pa/(Pn/\u03a9)]+[Mr-ip/(Mn-ip/\u03a9)]2+[Mr-op/(Mn-op/\u03a9)]\u22641.0 (K4-6)"
+  },
+  {
+   "label": "K4-7",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11201,
+   "page": 161,
+   "context": "M n =+2F y t \u23a3 \u23a2H b t BHt(B + H) \u23a6 \u23a5 (K4-7)"
+  },
+  {
+   "label": "K4-8",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11205,
+   "page": 161,
+   "context": "LRFD: [Pu/(\u03c6Pn)]+[Mr-ip/(\u03c6Mn-ip)]+[Mr-op/(\u03c6Mn-op)]\u22641.0 (K4-8)"
+  },
+  {
+   "label": "K4-9",
+   "chapter": "K",
+   "section": "K4",
+   "line": 11206,
+   "page": 161,
+   "context": "ASD: [Pa/(Pn/\u03a9)]+[Mr-ip/(Mn-ip/\u03a9)]+[Mr-op/(Mn-op/\u03a9)]\u22641.0 (K4-9)"
+  },
+  {
+   "label": "K5-4",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11260,
+   "page": 163,
+   "context": "le =2Be (K5-4)"
+  },
+  {
+   "label": "K5-5",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11266,
+   "page": 163,
+   "context": "l = b +2B (K5-5)"
+  },
+  {
+   "label": "K5-6",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11269,
+   "page": 163,
+   "context": "S ip = 3 w \u239d \u239c sin b \u03b8\u23a0 \u239f +t w B e\u239d \u239c sin b \u03b8\u23a0 \u239f (K5-6)"
+  },
+  {
+   "label": "K5-7",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11276,
+   "page": 163,
+   "context": "(K5-7)"
+  },
+  {
+   "label": "K5-8",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11284,
+   "page": 163,
+   "context": "l = 2 H b \u22121.2t b +2 ( B \u22121.2t ) (K5-8)"
+  },
+  {
+   "label": "K5-9",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11289,
+   "page": 163,
+   "context": "l = b b +B \u22121.2t (K5-9)"
+  },
+  {
+   "label": "K5-10",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11305,
+   "page": 164,
+   "context": "(K5-10)"
+  },
+  {
+   "label": "K5-11",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11309,
+   "page": 164,
+   "context": "for overlapped K-connections may (K5-11)"
+  },
+  {
+   "label": "K5-12",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11313,
+   "page": 164,
+   "context": "(K5-12)"
+  },
+  {
+   "label": "K5-13",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11324,
+   "page": 164,
+   "context": "+2B (K5-13)"
+  },
+  {
+   "label": "K5-14",
+   "chapter": "K",
+   "section": "K5",
+   "line": 11328,
+   "page": 164,
+   "context": "le,j =2(Hbj (cid:2)1.2tbj)/sin\u03b8 j (K5-14)"
+  },
+  {
+   "label": "A-1-1",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12231,
+   "page": 188,
+   "context": "\u03bb pd =\u22123.76 F \u239d \u239c1 \u03c6 P u \u23a0 \u239f (A-1-1)"
+  },
+  {
+   "label": "A-1-2",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12236,
+   "page": 188,
+   "context": "\u03bb pd =\u22121..12 F \u239d \u239c233 \u03c6 P u \u23a0 \u239f \u22651.49 F (A-1-2)"
+  },
+  {
+   "label": "A-1-3",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12256,
+   "page": 189,
+   "context": "\u03bb =0.94 E/F (A-1-3)"
+  },
+  {
+   "label": "A-1-4",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12262,
+   "page": 189,
+   "context": "\u03bb =0.045E/F (A-1-4)"
+  },
+  {
+   "label": "A-1-5",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12280,
+   "page": 189,
+   "context": "L =\u239c0.12\u22120.076 1 \u239f r (A-1-5)"
+  },
+  {
+   "label": "A-1-6a",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12290,
+   "page": 189,
+   "context": "M \u2032 /M =+1 (A-1-6a)"
+  },
+  {
+   "label": "A-1-6b",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12299,
+   "page": 190,
+   "context": "M \u2032 =M (A-1-6b)"
+  },
+  {
+   "label": "A-1-6c",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12303,
+   "page": 190,
+   "context": "MM \u2032=<()2M \u2212 M (A-1-6c)"
+  },
+  {
+   "label": "A-1-7",
+   "chapter": "A1",
+   "section": "A1",
+   "line": 12324,
+   "page": 190,
+   "context": "L pd = \u239c0.17\u22120.10 1\u239f r y \u22650.10 r y (A-1-7)"
+  },
+  {
+   "label": "A-2-1",
+   "chapter": "A2",
+   "section": "A2",
+   "line": 12404,
+   "page": 192,
+   "context": "C +0.9C \u22640.25 (A-2-1)"
+  },
+  {
+   "label": "A-2-2",
+   "chapter": "A2",
+   "section": "A2",
+   "line": 12406,
+   "page": 192,
+   "context": "I \u226525(S4)10\u20136 (A-2-2)"
+  },
+  {
+   "label": "A-2-3",
+   "chapter": "A2",
+   "section": "A2",
+   "line": 12412,
+   "page": 192,
+   "context": "C = s p (A-2-3)"
+  },
+  {
+   "label": "A-2-4",
+   "chapter": "A2",
+   "section": "A2",
+   "line": 12421,
+   "page": 192,
+   "context": "C = s (A-2-4)"
+  },
+  {
+   "label": "A-2-5",
+   "chapter": "A2",
+   "section": "A2",
+   "line": 12458,
+   "page": 193,
+   "context": "U p = \u239d \u239c f y o \u23a0 \u239f for the primary member (A-2-5)"
+  },
+  {
+   "label": "A-2-6",
+   "chapter": "A2",
+   "section": "A2",
+   "line": 12461,
+   "page": 193,
+   "context": "U s = \u239d \u239c f y o \u23a0 \u239f for the secondary memmber (A-2-6)"
+  },
+  {
+   "label": "A-3-1",
+   "chapter": "A3",
+   "section": "A3",
+   "line": 12570,
+   "page": 197,
+   "context": "F SR =1,000 \u239d \u239c n f \u23a0 \u239f \u2265F TH (A-3-1)"
+  },
+  {
+   "label": "A-3-2",
+   "chapter": "A3",
+   "section": "A3",
+   "line": 12589,
+   "page": 197,
+   "context": "F SR =100 \u239d \u239c n \u23a0 \u239f \u22658 ksi (A-3-2)"
+  },
+  {
+   "label": "A-3-3",
+   "chapter": "A3",
+   "section": "A3",
+   "line": 12614,
+   "page": 198,
+   "context": "F SR =1,000R PJP\u239d \u239c n \u23a0 \u239f (A-3-3)"
+  },
+  {
+   "label": "A-3-4",
+   "chapter": "A3",
+   "section": "A3",
+   "line": 12629,
+   "page": 198,
+   "context": "R = pp \u22641.0 (A-3-4)"
+  },
+  {
+   "label": "A-3-5",
+   "chapter": "A3",
+   "section": "A3",
+   "line": 12661,
+   "page": 199,
+   "context": "F SR =1,000R FIL \u239d \u239c n \u23a0 \u239f (A-3-5)"
+  },
+  {
+   "label": "A-3-6",
+   "chapter": "A3",
+   "section": "A3",
+   "line": 12672,
+   "page": 199,
+   "context": "= p \u22641.0 (A-3-6)"
+  },
+  {
+   "label": "A-3-7",
+   "chapter": "A3",
+   "section": "A3",
+   "line": 12713,
+   "page": 200,
+   "context": "A = \u239cd \u2212 \u239f (A-3-7)"
+  },
+  {
+   "label": "A-4-1",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13411,
+   "page": 223,
+   "context": "(0.9 or 1.2) D+A +0.5L+0.2S (A-4-1)"
+  },
+  {
+   "label": "A-4-2",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13677,
+   "page": 229,
+   "context": "F cr (T)=\u23a30.42 Fe(T)\u23a6 F y (T) (A-4-2)"
+  },
+  {
+   "label": "A-4-3",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13707,
+   "page": 230,
+   "context": "M nb (T)= r +C M (T\u2212) \u23a1\u23a3M p (T) M r (T)\u23a4\u23a6\u23a21\u2212 b \u23a5 \u2264 Mp(T) (A-4-3)"
+  },
+  {
+   "label": "A-4-4",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13712,
+   "page": 230,
+   "context": "M (T) =F (T)S \u2264M (T) (A-4-4)"
+  },
+  {
+   "label": "A-4-5",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13716,
+   "page": 230,
+   "context": "F cr (T)= b \u239bL b \u239e2 1+0.078 S x h o \u239d \u239c\u239c r ts b \u23a0 \u239f (A-4-5)"
+  },
+  {
+   "label": "A-4-6",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13721,
+   "page": 230,
+   "context": "L r (T) = 1.95r ts F (T) S h + \u239d \u239c S h \u23a0 \u239f +6.76 \u23a3 \u23a2 E L (T) \u23a6 \u23a5 (A-4-6)"
+  },
+  {
+   "label": "A-4-7",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13723,
+   "page": 230,
+   "context": "M(T) =F (T)S (A-4-7)"
+  },
+  {
+   "label": "A-4-8",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13725,
+   "page": 230,
+   "context": "F (T) =F(k \u22120.3k ) (A-4-8)"
+  },
+  {
+   "label": "A-4-9",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13727,
+   "page": 230,
+   "context": "M (T)=F(T)Z (A-4-9)"
+  },
+  {
+   "label": "A-4-10",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13732,
+   "page": 230,
+   "context": "= 0..53+ \u226430 where Tis in \u00b0F (A-4-10)"
+  },
+  {
+   "label": "A-4-11",
+   "chapter": "A4",
+   "section": "A4",
+   "line": 13761,
+   "page": 231,
+   "context": "M (T) =r(T)M (A-4-11)"
+  },
+  {
+   "label": "A-6-1",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14056,
+   "page": 239,
+   "context": "V =0.005P (A-6-1)"
+  },
+  {
+   "label": "A-6-2a",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14060,
+   "page": 239,
+   "context": "\u03b2 br = \u03c6\u239d \u239c L r \u23a0 \u239f (LRFD) (A-6-2a)"
+  },
+  {
+   "label": "A-6-2b",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14063,
+   "page": 239,
+   "context": "\u03b2 br =\u03a9 \u239d \u239c L r \u23a0 \u239f (ASD) (A-6-2b)"
+  },
+  {
+   "label": "A-6-3",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14075,
+   "page": 239,
+   "context": "P =0.01P (A-6-3)"
+  },
+  {
+   "label": "A-6-4a",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14079,
+   "page": 239,
+   "context": "\u03b2 br = \u03c6\u239d \u239c L r \u23a0 \u239f (LRFD) (A-6-4a)"
+  },
+  {
+   "label": "A-6-4b",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14082,
+   "page": 239,
+   "context": "\u03b2 br =\u03a9 \u239d \u239c L r \u23a0 \u239f (ASD) (A-6-4b)"
+  },
+  {
+   "label": "A-6-5",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14132,
+   "page": 240,
+   "context": "V br = 0.01 \u239d \u239c h r d \u23a0 \u239f (A-6-5)"
+  },
+  {
+   "label": "A-6-6a",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14136,
+   "page": 240,
+   "context": "\u03b2 br = \u03c6\u239d \u239c L r h d \u23a0 \u239f (LRFD) (A-6-6a)"
+  },
+  {
+   "label": "A-6-6b",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14139,
+   "page": 240,
+   "context": "\u03b2 br =\u03a9 \u239d \u239c L r h d \u23a0 \u239f (ASD) (A-6-6b)"
+  },
+  {
+   "label": "A-6-7",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14162,
+   "page": 241,
+   "context": "P br = 0.02 \u239d \u239c h r d \u23a0 \u239f (A-6-7)"
+  },
+  {
+   "label": "A-6-8a",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14166,
+   "page": 241,
+   "context": "\u03b2 br = \u03c6\u239d \u239c L r h d \u23a0 \u239f (LRFD) (A-6-8a)"
+  },
+  {
+   "label": "A-6-8b",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14169,
+   "page": 241,
+   "context": "\u03b2 br =\u03a9 \u239d \u239c L r h d \u23a0 \u239f (ASD) (A-6-8b)"
+  },
+  {
+   "label": "A-6-9",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14201,
+   "page": 242,
+   "context": "M =0.02M (A-6-9)"
+  },
+  {
+   "label": "A-6-10",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14205,
+   "page": 242,
+   "context": "\u03b2 br = \u239b T \u03b2 \u239e (A-6-10)"
+  },
+  {
+   "label": "A-6-11a",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14212,
+   "page": 242,
+   "context": "\u03b2 = \u239c r \u239f (LRFD) (A-6-11a)"
+  },
+  {
+   "label": "A-6-11b",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14216,
+   "page": 242,
+   "context": "\u03b2 T = \u03a9 \u239c r \u239f (ASD) (A-6-11b)"
+  },
+  {
+   "label": "A-6-12",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14220,
+   "page": 242,
+   "context": "\u03b2 = \u239c o w + st s \u239f (A-6-12)"
+  },
+  {
+   "label": "A-6-13",
+   "chapter": "A6",
+   "section": "A6",
+   "line": 14293,
+   "page": 243,
+   "context": "\u03b2 = w (A-6-13)"
+  },
+  {
+   "label": "A-7-1",
+   "chapter": "A7",
+   "section": "A7",
+   "line": 14425,
+   "page": 247,
+   "context": "\u03b1P \u22640.5P (A-7-1)"
+  },
+  {
+   "label": "A-7-2",
+   "chapter": "A7",
+   "section": "A7",
+   "line": 14445,
+   "page": 247,
+   "context": "N =2.1\u03b1(\u0394/L)Y \u22650.0042Y (A-7-2)"
+  },
+  {
+   "label": "A-8-1",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14511,
+   "page": 249,
+   "context": "M =B M +B M (A-8-1)"
+  },
+  {
+   "label": "A-8-2",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14513,
+   "page": 249,
+   "context": "P =P +B P (A-8-2)"
+  },
+  {
+   "label": "A-8-3",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14562,
+   "page": 250,
+   "context": "B = m \u22651 (A-8-3)"
+  },
+  {
+   "label": "A-8-4",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14572,
+   "page": 250,
+   "context": "C =0.6\u22120.4(M /M ) (A-8-4)"
+  },
+  {
+   "label": "A-8-5",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14591,
+   "page": 250,
+   "context": "(A-8-5)"
+  },
+  {
+   "label": "A-8-6",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14621,
+   "page": 251,
+   "context": "B = \u22651 (A-8-6)"
+  },
+  {
+   "label": "A-8-7",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14637,
+   "page": 251,
+   "context": "=R (A-8-7)"
+  },
+  {
+   "label": "A-8-8",
+   "chapter": "A8",
+   "section": "A8",
+   "line": 14645,
+   "page": 251,
+   "context": "R =1 \u22120.15 (P /P ) (A-8-8)"
+  }
+ ],
+ "tables": [
+  {
+   "label": "B4.1a",
+   "chapter": "B",
+   "line": 3817,
+   "page": 16
+  },
+  {
+   "label": "B4.1b",
+   "chapter": "B",
+   "line": 3915,
+   "page": 18
+  },
+  {
+   "label": "D3.1",
+   "chapter": "D",
+   "line": 4469,
+   "page": 29
+  },
+  {
+   "label": "E7.1",
+   "chapter": "E",
+   "line": 5211,
+   "page": 43
+  },
+  {
+   "label": "I1.1a",
+   "chapter": "I",
+   "line": 7677,
+   "page": 89
+  },
+  {
+   "label": "I1.1b",
+   "chapter": "I",
+   "line": 7694,
+   "page": 89
+  },
+  {
+   "label": "I5.1",
+   "chapter": "I",
+   "line": 8282,
+   "page": 100
+  },
+  {
+   "label": "J2.1",
+   "chapter": "J",
+   "line": 9085,
+   "page": 117
+  },
+  {
+   "label": "J2.2",
+   "chapter": "J",
+   "line": 9128,
+   "page": 118
+  },
+  {
+   "label": "J2.3",
+   "chapter": "J",
+   "line": 9137,
+   "page": 118
+  },
+  {
+   "label": "J2.4",
+   "chapter": "J",
+   "line": 9164,
+   "page": 119
+  },
+  {
+   "label": "J2.5",
+   "chapter": "J",
+   "line": 9340,
+   "page": 123
+  },
+  {
+   "label": "J3.1",
+   "chapter": "J",
+   "line": 9568,
+   "page": 127
+  },
+  {
+   "label": "J3.1M",
+   "chapter": "J",
+   "line": 9585,
+   "page": 127
+  },
+  {
+   "label": "J3.2",
+   "chapter": "J",
+   "line": 9653,
+   "page": 129
+  },
+  {
+   "label": "J3.3",
+   "chapter": "J",
+   "line": 9701,
+   "page": 130
+  },
+  {
+   "label": "J3.3M",
+   "chapter": "J",
+   "line": 9712,
+   "page": 130
+  },
+  {
+   "label": "J3.4",
+   "chapter": "J",
+   "line": 9778,
+   "page": 132
+  },
+  {
+   "label": "J3.4M",
+   "chapter": "J",
+   "line": 9795,
+   "page": 132
+  },
+  {
+   "label": "J3.5",
+   "chapter": "J",
+   "line": 9817,
+   "page": 132
+  },
+  {
+   "label": "J3.5M",
+   "chapter": "J",
+   "line": 9830,
+   "page": 132
+  },
+  {
+   "label": "K2.1",
+   "chapter": "K",
+   "line": 10656,
+   "page": 151
+  },
+  {
+   "label": "K2.1A",
+   "chapter": "K",
+   "line": 10722,
+   "page": 151
+  },
+  {
+   "label": "K3.1",
+   "chapter": "K",
+   "line": 10838,
+   "page": 154
+  },
+  {
+   "label": "K3.1A",
+   "chapter": "K",
+   "line": 10896,
+   "page": 155
+  },
+  {
+   "label": "K3.2",
+   "chapter": "K",
+   "line": 10916,
+   "page": 155
+  },
+  {
+   "label": "K3.2A",
+   "chapter": "K",
+   "line": 11016,
+   "page": 157
+  },
+  {
+   "label": "K4.1",
+   "chapter": "K",
+   "line": 11117,
+   "page": 159
+  },
+  {
+   "label": "K4.1A",
+   "chapter": "K",
+   "line": 11169,
+   "page": 160
+  },
+  {
+   "label": "K4.2",
+   "chapter": "K",
+   "line": 11194,
+   "page": 161
+  },
+  {
+   "label": "K4.2A",
+   "chapter": "K",
+   "line": 11229,
+   "page": 162
+  },
+  {
+   "label": "K5.1",
+   "chapter": "K",
+   "line": 11254,
+   "page": 163
+  },
+  {
+   "label": "N5.4-1",
+   "chapter": "N",
+   "line": 11791,
+   "page": 177
+  },
+  {
+   "label": "N5.4-2",
+   "chapter": "N",
+   "line": 11825,
+   "page": 178
+  },
+  {
+   "label": "N5.4-3",
+   "chapter": "N",
+   "line": 11854,
+   "page": 179
+  },
+  {
+   "label": "N5.6-1",
+   "chapter": "N",
+   "line": 12002,
+   "page": 183
+  },
+  {
+   "label": "N5.6-2",
+   "chapter": "N",
+   "line": 12020,
+   "page": 183
+  },
+  {
+   "label": "N5.6-3",
+   "chapter": "N",
+   "line": 12033,
+   "page": 183
+  },
+  {
+   "label": "A-3.1",
+   "chapter": "A3",
+   "line": 12772,
+   "page": 202
+  },
+  {
+   "label": "A-4.2.1",
+   "chapter": "A4",
+   "line": 13529,
+   "page": 226
+  },
+  {
+   "label": "A-4.2.2",
+   "chapter": "A4",
+   "line": 13567,
+   "page": 227
+  },
+  {
+   "label": "A-4.2.3",
+   "chapter": "A4",
+   "line": 13607,
+   "page": 228
+  },
+  {
+   "label": "A-4.2.4",
+   "chapter": "A4",
+   "line": 13798,
+   "page": 232
+  }
+ ],
+ "sections": [
+  {
+   "label": "A1",
+   "title": "Scope",
+   "chapter": "A",
+   "line": 3141,
+   "page": null,
+   "equations": []
+  },
+  {
+   "label": "A2",
+   "title": "Referenced Specifications, Codes And Standards",
+   "chapter": "A",
+   "line": 3191,
+   "page": 2,
+   "equations": []
+  },
+  {
+   "label": "A3",
+   "title": "Material",
+   "chapter": "A",
+   "line": 3387,
+   "page": 6,
+   "equations": []
+  },
+  {
+   "label": "A4",
+   "title": "Structural Design Drawings And Specifications",
+   "chapter": "A",
+   "line": 3531,
+   "page": 10,
+   "equations": []
+  },
+  {
+   "label": "B1",
+   "title": "General Provisions",
+   "chapter": "B",
+   "line": 3567,
+   "page": 11,
+   "equations": []
+  },
+  {
+   "label": "B2",
+   "title": "Loads And Load Combinations",
+   "chapter": "B",
+   "line": 3570,
+   "page": 11,
+   "equations": []
+  },
+  {
+   "label": "B3",
+   "title": "Design Basis",
+   "chapter": "B",
+   "line": 3579,
+   "page": 11,
+   "equations": [
+    "B3-1",
+    "B3-2"
+   ]
+  },
+  {
+   "label": "B4",
+   "title": "Member Properties",
+   "chapter": "B",
+   "line": 3767,
+   "page": 16,
+   "equations": []
+  },
+  {
+   "label": "B5",
+   "title": "Fabrication And Erection",
+   "chapter": "B",
+   "line": 4108,
+   "page": 21,
+   "equations": []
+  },
+  {
+   "label": "B6",
+   "title": "Quality Control And Quality Assurance",
+   "chapter": "B",
+   "line": 4111,
+   "page": 21,
+   "equations": []
+  },
+  {
+   "label": "B7",
+   "title": "Evaluation Of Existing Structures",
+   "chapter": "B",
+   "line": 4114,
+   "page": 21,
+   "equations": []
+  },
+  {
+   "label": "C1",
+   "title": "General Stability Requirements",
+   "chapter": "C",
+   "line": 4134,
+   "page": 22,
+   "equations": []
+  },
+  {
+   "label": "C2",
+   "title": "Calculation Of Required Strengths",
+   "chapter": "C",
+   "line": 4165,
+   "page": 23,
+   "equations": [
+    "C2-1",
+    "C2-2a",
+    "C2-2b"
+   ]
+  },
+  {
+   "label": "C3",
+   "title": "Calculation Of Available Strengths",
+   "chapter": "C",
+   "line": 4369,
+   "page": 27,
+   "equations": []
+  },
+  {
+   "label": "D1",
+   "title": "Slenderness Limitations",
+   "chapter": "D",
+   "line": 4400,
+   "page": 28,
+   "equations": []
+  },
+  {
+   "label": "D2",
+   "title": "Tensile Strength",
+   "chapter": "D",
+   "line": 4405,
+   "page": 28,
+   "equations": [
+    "D2-1",
+    "D2-2"
+   ]
+  },
+  {
+   "label": "D3",
+   "title": "Effective Net Area",
+   "chapter": "D",
+   "line": 4435,
+   "page": 29,
+   "equations": [
+    "D3-1"
+   ]
+  },
+  {
+   "label": "D4",
+   "title": "Built-Up Members",
+   "chapter": "D",
+   "line": 4447,
+   "page": 29,
+   "equations": []
+  },
+  {
+   "label": "D5",
+   "title": "Pin-Connected Members",
+   "chapter": "D",
+   "line": 4458,
+   "page": 29,
+   "equations": [
+    "D5-1",
+    "D5-2"
+   ]
+  },
+  {
+   "label": "D6",
+   "title": "Eyebars",
+   "chapter": "D",
+   "line": 4655,
+   "page": 31,
+   "equations": []
+  },
+  {
+   "label": "E1",
+   "title": "General Provisions",
+   "chapter": "E",
+   "line": 4705,
+   "page": 33,
+   "equations": []
+  },
+  {
+   "label": "E2",
+   "title": "Effective Length",
+   "chapter": "E",
+   "line": 4753,
+   "page": 35,
+   "equations": []
+  },
+  {
+   "label": "E3",
+   "title": "Flexural Buckling Of Members Without Slender Elements",
+   "chapter": "E",
+   "line": 4769,
+   "page": 35,
+   "equations": [
+    "E3-1",
+    "E3-2",
+    "E3-3",
+    "E3-4"
+   ]
+  },
+  {
+   "label": "E4",
+   "title": "Torsional And Flexural-Torsional Buckling Of Single Angles And Members Without Slender Elements",
+   "chapter": "E",
+   "line": 4819,
+   "page": 36,
+   "equations": [
+    "E4-1",
+    "E4-2",
+    "E4-3",
+    "E4-4",
+    "E4-5",
+    "E4-6",
+    "E4-7",
+    "E4-8",
+    "E4-9"
+   ]
+  },
+  {
+   "label": "E5",
+   "title": "Single-Angle Compression Members",
+   "chapter": "E",
+   "line": 4931,
+   "page": 38,
+   "equations": [
+    "E5-1",
+    "E5-2",
+    "E5-3",
+    "E5-4"
+   ]
+  },
+  {
+   "label": "E6",
+   "title": "Built-Up Members",
+   "chapter": "E",
+   "line": 5017,
+   "page": 39,
+   "equations": [
+    "E6-1",
+    "E6-2a",
+    "E6-2b"
+   ]
+  },
+  {
+   "label": "E7",
+   "title": "Members With Slender Elements",
+   "chapter": "E",
+   "line": 5164,
+   "page": 42,
+   "equations": [
+    "E7-1",
+    "E7-2",
+    "E7-3",
+    "E7-4",
+    "E7-5",
+    "E7-6",
+    "E7-7"
+   ]
+  },
+  {
+   "label": "F1",
+   "title": "General Provisions",
+   "chapter": "F",
+   "line": 5326,
+   "page": 46,
+   "equations": [
+    "F1-1"
+   ]
+  },
+  {
+   "label": "F2",
+   "title": "Doubly Symmetric Compact I-Shaped Members And Channels Bent About Their Major Axis",
+   "chapter": "F",
+   "line": 5381,
+   "page": 47,
+   "equations": [
+    "F2-1",
+    "F2-2",
+    "F2-3",
+    "F2-4",
+    "F2-5",
+    "F2-6",
+    "F2-7",
+    "F2-8a",
+    "F2-8b"
+   ]
+  },
+  {
+   "label": "F3",
+   "title": "Doubly Symmetric I-Shaped Members With Compact Webs And Noncompact Or Slender Flanges Bent About Their Major Axis",
+   "chapter": "F",
+   "line": 5502,
+   "page": 49,
+   "equations": [
+    "F3-1",
+    "F3-2"
+   ]
+  },
+  {
+   "label": "F4",
+   "title": "Other I-Shaped Members With Compact Or Noncompact Webs Bent About Their Major Axis",
+   "chapter": "F",
+   "line": 5552,
+   "page": 50,
+   "equations": [
+    "F4-1",
+    "F4-2",
+    "F4-3",
+    "F4-4",
+    "F4-5",
+    "F4-6a",
+    "F4-6b",
+    "F4-7",
+    "F4-8",
+    "F4-9a",
+    "F4-9b",
+    "F4-10",
+    "F4-11",
+    "F4-12",
+    "F4-13",
+    "F4-14",
+    "F4-15",
+    "F4-16a",
+    "F4-16b",
+    "F4-17"
+   ]
+  },
+  {
+   "label": "F5",
+   "title": "Doubly Symmetric And Singly Symmetric I-Shaped Members With Slender Webs Bent About Their Major Axis",
+   "chapter": "F",
+   "line": 5805,
+   "page": 54,
+   "equations": [
+    "F5-1",
+    "F5-2",
+    "F5-3",
+    "F5-4",
+    "F5-5",
+    "F5-6",
+    "F5-7",
+    "F5-8",
+    "F5-9",
+    "F5-10"
+   ]
+  },
+  {
+   "label": "F6",
+   "title": "I-Shaped Members And Channels Bent About Their Minor Axis",
+   "chapter": "F",
+   "line": 5897,
+   "page": 56,
+   "equations": [
+    "F6-1",
+    "F6-2",
+    "F6-3",
+    "F6-4"
+   ]
+  },
+  {
+   "label": "F7",
+   "title": "Square And Rectangular Hss And Box Sections",
+   "chapter": "F",
+   "line": 5948,
+   "page": 57,
+   "equations": [
+    "F7-1",
+    "F7-2",
+    "F7-3",
+    "F7-4",
+    "F7-5",
+    "F7-6",
+    "F7-7",
+    "F7-8",
+    "F7-9",
+    "F7-10",
+    "F7-11",
+    "F7-12",
+    "F7-13"
+   ]
+  },
+  {
+   "label": "F8",
+   "title": "Round Hss",
+   "chapter": "F",
+   "line": 6059,
+   "page": 59,
+   "equations": [
+    "F8-1",
+    "F8-2",
+    "F8-3",
+    "F8-4"
+   ]
+  },
+  {
+   "label": "F9",
+   "title": "Tees And Double Angles Loaded In The Plane Of Symmetry",
+   "chapter": "F",
+   "line": 6093,
+   "page": 60,
+   "equations": [
+    "F9-1",
+    "F9-2",
+    "F9-3",
+    "F9-4",
+    "F9-5",
+    "F9-6",
+    "F9-7",
+    "F9-8",
+    "F9-9",
+    "F9-10",
+    "F9-11",
+    "F9-12",
+    "F9-13",
+    "F9-14",
+    "F9-15",
+    "F9-16",
+    "F9-17",
+    "F9-18",
+    "F9-19"
+   ]
+  },
+  {
+   "label": "F10",
+   "title": "Single Angles",
+   "chapter": "F",
+   "line": 6248,
+   "page": 62,
+   "equations": [
+    "F10-1",
+    "F10-2",
+    "F10-3",
+    "F10-4",
+    "F10-5a",
+    "F10-5b",
+    "F10-6",
+    "F10-7",
+    "F10-8"
+   ]
+  },
+  {
+   "label": "F11",
+   "title": "Rectangular Bars And Rounds",
+   "chapter": "F",
+   "line": 6399,
+   "page": 65,
+   "equations": [
+    "F11-1",
+    "F11-2",
+    "F11-3",
+    "F11-4"
+   ]
+  },
+  {
+   "label": "F12",
+   "title": "Unsymmetrical Shapes",
+   "chapter": "F",
+   "line": 6470,
+   "page": 66,
+   "equations": [
+    "F12-1",
+    "F12-2",
+    "F12-3",
+    "F12-4"
+   ]
+  },
+  {
+   "label": "F13",
+   "title": "Proportions Of Beams And Girders",
+   "chapter": "F",
+   "line": 6509,
+   "page": 67,
+   "equations": [
+    "F13-1",
+    "F13-2",
+    "F13-3",
+    "F13-4",
+    "F13-5",
+    "F13-6",
+    "F13-7",
+    "F13-8",
+    "F13-9"
+   ]
+  },
+  {
+   "label": "G1",
+   "title": "General Provisions",
+   "chapter": "G",
+   "line": 6667,
+   "page": 70,
+   "equations": []
+  },
+  {
+   "label": "G2",
+   "title": "I-Shaped Members And Channels",
+   "chapter": "G",
+   "line": 6677,
+   "page": 70,
+   "equations": [
+    "G2-1",
+    "G2-2",
+    "G2-3",
+    "G2-4",
+    "G2-5",
+    "G2-6",
+    "G2-7",
+    "G2-8",
+    "G2-9",
+    "G2-10",
+    "G2-11",
+    "G2-12",
+    "G2-13",
+    "G2-14",
+    "G2-15"
+   ]
+  },
+  {
+   "label": "G3",
+   "title": "Single Angles And Tees",
+   "chapter": "G",
+   "line": 6896,
+   "page": 74,
+   "equations": [
+    "G3-1"
+   ]
+  },
+  {
+   "label": "G4",
+   "title": "Rectangular Hss, Box Sections, And Other Singly And Doubly Symmetric Members",
+   "chapter": "G",
+   "line": 6908,
+   "page": 74,
+   "equations": [
+    "G4-1"
+   ]
+  },
+  {
+   "label": "G5",
+   "title": "Round Hss",
+   "chapter": "G",
+   "line": 6943,
+   "page": 75,
+   "equations": [
+    "G5-1",
+    "G5-2a",
+    "G5-2b"
+   ]
+  },
+  {
+   "label": "G6",
+   "title": "Weak-Axis Shear In Doubly Symmetric And Singly Symmetric Shapes",
+   "chapter": "G",
+   "line": 6977,
+   "page": 75,
+   "equations": [
+    "G6-1"
+   ]
+  },
+  {
+   "label": "G7",
+   "title": "Beams And Girders With Web Openings",
+   "chapter": "G",
+   "line": 7003,
+   "page": 76,
+   "equations": []
+  },
+  {
+   "label": "H1",
+   "title": "Doubly And Singly Symmetric Members Subject To Flexure And Axial Force",
+   "chapter": "H",
+   "line": 7023,
+   "page": 77,
+   "equations": [
+    "H1-1a",
+    "H1-1b",
+    "H1-2",
+    "H1-3"
+   ]
+  },
+  {
+   "label": "H2",
+   "title": "Unsymmetric And Other Members Subject To Flexure And Axial Force",
+   "chapter": "H",
+   "line": 7222,
+   "page": 80,
+   "equations": [
+    "H2-1"
+   ]
+  },
+  {
+   "label": "H3",
+   "title": "Members Subject To Torsion And Combined Torsion, Flexure, Shear, And/Or Axial Force",
+   "chapter": "H",
+   "line": 7308,
+   "page": 81,
+   "equations": [
+    "H3-1",
+    "H3-2a",
+    "H3-2b",
+    "H3-3",
+    "H3-4",
+    "H3-5",
+    "H3-6",
+    "H3-7",
+    "H3-8",
+    "H3-9"
+   ]
+  },
+  {
+   "label": "H4",
+   "title": "Rupture Of Flanges With Holes Subjected To Tension",
+   "chapter": "H",
+   "line": 7470,
+   "page": 84,
+   "equations": [
+    "H4-1"
+   ]
+  },
+  {
+   "label": "I1",
+   "title": "General Provisions",
+   "chapter": "I",
+   "line": 7559,
+   "page": 86,
+   "equations": []
+  },
+  {
+   "label": "I2",
+   "title": "Axial Force",
+   "chapter": "I",
+   "line": 7765,
+   "page": 90,
+   "equations": [
+    "I2-1",
+    "I2-2",
+    "I2-3",
+    "I2-4",
+    "I2-5",
+    "I2-6",
+    "I2-7",
+    "I2-8",
+    "I2-9a",
+    "I2-9b",
+    "I2-9c",
+    "I2-9d",
+    "I2-9e",
+    "I2-10",
+    "I2-11",
+    "I2-12",
+    "I2-13",
+    "I2-14"
+   ]
+  },
+  {
+   "label": "I3",
+   "title": "Flexure",
+   "chapter": "I",
+   "line": 7983,
+   "page": 94,
+   "equations": [
+    "I3-1a",
+    "I3-1b",
+    "I3-1c",
+    "I3-2a",
+    "I3-2b",
+    "I3-3a",
+    "I3-3b"
+   ]
+  },
+  {
+   "label": "I4",
+   "title": "Shear",
+   "chapter": "I",
+   "line": 8227,
+   "page": 99,
+   "equations": []
+  },
+  {
+   "label": "I5",
+   "title": "Combined Flexure And Axial Force",
+   "chapter": "I",
+   "line": 8246,
+   "page": 99,
+   "equations": [
+    "I5-1a",
+    "I5-1b",
+    "I5-2"
+   ]
+  },
+  {
+   "label": "I6",
+   "title": "Load Transfer",
+   "chapter": "I",
+   "line": 8364,
+   "page": 100,
+   "equations": [
+    "I6-1",
+    "I6-2a",
+    "I6-2b",
+    "I6-3",
+    "I6-4",
+    "I6-5"
+   ]
+  },
+  {
+   "label": "I7",
+   "title": "Composite Diaphragms And Collector Beams",
+   "chapter": "I",
+   "line": 8519,
+   "page": 104,
+   "equations": []
+  },
+  {
+   "label": "I8",
+   "title": "Steel Anchors",
+   "chapter": "I",
+   "line": 8525,
+   "page": 104,
+   "equations": [
+    "I8-1",
+    "I8-2",
+    "I8-3",
+    "I8-4",
+    "I8-5"
+   ]
+  },
+  {
+   "label": "J1",
+   "title": "General Provisions",
+   "chapter": "J",
+   "line": 8931,
+   "page": 113,
+   "equations": []
+  },
+  {
+   "label": "J2",
+   "title": "Welds",
+   "chapter": "J",
+   "line": 9071,
+   "page": 116,
+   "equations": [
+    "J2-1",
+    "J2-2",
+    "J2-3",
+    "J2-4",
+    "J2-5",
+    "J2-6a",
+    "J2-6b"
+   ]
+  },
+  {
+   "label": "J3",
+   "title": "Bolts And Threaded Parts",
+   "chapter": "J",
+   "line": 9527,
+   "page": 126,
+   "equations": [
+    "J3-1",
+    "J3-2",
+    "J3-3a",
+    "J3-3b",
+    "J3-4",
+    "J3-5a",
+    "J3-5b",
+    "J3-6a",
+    "J3-6b",
+    "J3-6c",
+    "J3-6d",
+    "J3-6e",
+    "J3-6f"
+   ]
+  },
+  {
+   "label": "J4",
+   "title": "Affected Elements Of Members And Connecting Elements",
+   "chapter": "J",
+   "line": 10020,
+   "page": 137,
+   "equations": [
+    "J4-1",
+    "J4-2",
+    "J4-3",
+    "J4-4",
+    "J4-5",
+    "J4-6"
+   ]
+  },
+  {
+   "label": "J5",
+   "title": "Fillers",
+   "chapter": "J",
+   "line": 10106,
+   "page": 139,
+   "equations": []
+  },
+  {
+   "label": "J6",
+   "title": "Splices",
+   "chapter": "J",
+   "line": 10140,
+   "page": 139,
+   "equations": []
+  },
+  {
+   "label": "J7",
+   "title": "Bearing Strength",
+   "chapter": "J",
+   "line": 10148,
+   "page": 140,
+   "equations": [
+    "J7-1",
+    "J7-2",
+    "J7-3"
+   ]
+  },
+  {
+   "label": "J8",
+   "title": "Column Bases And Bearing On Concrete",
+   "chapter": "J",
+   "line": 10188,
+   "page": 140,
+   "equations": [
+    "J8-1",
+    "J8-2"
+   ]
+  },
+  {
+   "label": "J9",
+   "title": "Anchor Rods And Embedments",
+   "chapter": "J",
+   "line": 10218,
+   "page": 141,
+   "equations": []
+  },
+  {
+   "label": "J10",
+   "title": "Flanges And Webs With Concentrated Forces",
+   "chapter": "J",
+   "line": 10250,
+   "page": 142,
+   "equations": [
+    "J10-1",
+    "J10-2",
+    "J10-3",
+    "J10-4",
+    "J10-5a",
+    "J10-5b",
+    "J10-6",
+    "J10-7",
+    "J10-8",
+    "J10-9",
+    "J10-10",
+    "J10-11",
+    "J10-12"
+   ]
+  },
+  {
+   "label": "K1",
+   "title": "General Provisions And Parameters For Hss Connections",
+   "chapter": "K",
+   "line": 10569,
+   "page": 149,
+   "equations": [
+    "K1-1"
+   ]
+  },
+  {
+   "label": "K2",
+   "title": "Concentrated Forces On Hss",
+   "chapter": "K",
+   "line": 10644,
+   "page": 150,
+   "equations": [
+    "K2-1b",
+    "K2-1a",
+    "K2-2a",
+    "K2-2b",
+    "K2-3",
+    "K2-4"
+   ]
+  },
+  {
+   "label": "K3",
+   "title": "Hss-To-Hss Truss Connections",
+   "chapter": "K",
+   "line": 10747,
+   "page": 152,
+   "equations": []
+  },
+  {
+   "label": "K4",
+   "title": "Hss-To-Hss Moment Connections",
+   "chapter": "K",
+   "line": 10826,
+   "page": 153,
+   "equations": [
+    "K3-1",
+    "K3-2",
+    "K3-3",
+    "K3-4",
+    "K3-5",
+    "K3-6",
+    "K3-7",
+    "K3-8",
+    "K3-9",
+    "K3-10",
+    "K3-11",
+    "K3-12",
+    "K3-13",
+    "K3-14",
+    "K3-15",
+    "K3-16",
+    "K3-17"
+   ]
+  },
+  {
+   "label": "K5",
+   "title": "Welds Of Plates And Branches To Rectangular Hss",
+   "chapter": "K",
+   "line": 11087,
+   "page": 158,
+   "equations": [
+    "K5-1",
+    "K5-2",
+    "K5-3",
+    "K4-1",
+    "K4-2",
+    "K4-3",
+    "K4-4",
+    "K4-5",
+    "K4-6",
+    "K4-7",
+    "K4-8",
+    "K4-9",
+    "K5-4",
+    "K5-5",
+    "K5-6",
+    "K5-7",
+    "K5-8",
+    "K5-9",
+    "K5-10",
+    "K5-11",
+    "K5-12",
+    "K5-13",
+    "K5-14"
+   ]
+  },
+  {
+   "label": "L1",
+   "title": "General Provisions",
+   "chapter": "L",
+   "line": 11346,
+   "page": 165,
+   "equations": []
+  },
+  {
+   "label": "L2",
+   "title": "Deflections",
+   "chapter": "L",
+   "line": 11362,
+   "page": 165,
+   "equations": []
+  },
+  {
+   "label": "L3",
+   "title": "Drift",
+   "chapter": "L",
+   "line": 11365,
+   "page": 165,
+   "equations": []
+  },
+  {
+   "label": "L4",
+   "title": "Vibration",
+   "chapter": "L",
+   "line": 11371,
+   "page": 166,
+   "equations": []
+  },
+  {
+   "label": "L5",
+   "title": "Wind-Induced Motion",
+   "chapter": "L",
+   "line": 11375,
+   "page": 166,
+   "equations": []
+  },
+  {
+   "label": "L6",
+   "title": "Thermal Expansion And Contraction",
+   "chapter": "L",
+   "line": 11378,
+   "page": 166,
+   "equations": []
+  },
+  {
+   "label": "L7",
+   "title": "Connection Slip",
+   "chapter": "L",
+   "line": 11380,
+   "page": 166,
+   "equations": []
+  },
+  {
+   "label": "M1",
+   "title": "Shop And Erection Drawings",
+   "chapter": "M",
+   "line": 11400,
+   "page": 167,
+   "equations": []
+  },
+  {
+   "label": "M2",
+   "title": "Fabrication",
+   "chapter": "M",
+   "line": 11410,
+   "page": 167,
+   "equations": []
+  },
+  {
+   "label": "M3",
+   "title": "Shop Painting",
+   "chapter": "M",
+   "line": 11528,
+   "page": 170,
+   "equations": []
+  },
+  {
+   "label": "M4",
+   "title": "Erection",
+   "chapter": "M",
+   "line": 11554,
+   "page": 170,
+   "equations": []
+  },
+  {
+   "label": "N1",
+   "title": "General Provisions",
+   "chapter": "N",
+   "line": 11613,
+   "page": 172,
+   "equations": []
+  },
+  {
+   "label": "N2",
+   "title": "Fabricator And Erector Quality Control Program",
+   "chapter": "N",
+   "line": 11635,
+   "page": 173,
+   "equations": []
+  },
+  {
+   "label": "N3",
+   "title": "Fabricator And Erector Documents",
+   "chapter": "N",
+   "line": 11669,
+   "page": 174,
+   "equations": []
+  },
+  {
+   "label": "N4",
+   "title": "Inspection And Nondestructive Testing Personnel",
+   "chapter": "N",
+   "line": 11712,
+   "page": 175,
+   "equations": []
+  },
+  {
+   "label": "N5",
+   "title": "Minimum Requirements For Inspection Of Structural Steel Buildings",
+   "chapter": "N",
+   "line": 11740,
+   "page": 175,
+   "equations": []
+  },
+  {
+   "label": "N6",
+   "title": "Approved Fabricators And Erectors",
+   "chapter": "N",
+   "line": 12041,
+   "page": 184,
+   "equations": []
+  },
+  {
+   "label": "N7",
+   "title": "Nonconforming Material And Workmanship",
+   "chapter": "N",
+   "line": 12053,
+   "page": 184,
+   "equations": []
+  },
+  {
+   "label": "1.1",
+   "title": "General Requirements",
+   "chapter": "A1",
+   "line": 12079,
+   "page": 185,
+   "equations": []
+  },
+  {
+   "label": "1.2",
+   "title": "Design By Elastic Analysis",
+   "chapter": "A1",
+   "line": 12086,
+   "page": 185,
+   "equations": []
+  },
+  {
+   "label": "1.3",
+   "title": "Design By Inelastic Analysis",
+   "chapter": "A1",
+   "line": 12177,
+   "page": 187,
+   "equations": [
+    "A-1-1",
+    "A-1-2",
+    "A-1-3",
+    "A-1-4",
+    "A-1-5",
+    "A-1-6a",
+    "A-1-6b",
+    "A-1-6c",
+    "A-1-7"
+   ]
+  },
+  {
+   "label": "2.1",
+   "title": "Simplified Design For Ponding",
+   "chapter": "A2",
+   "line": 12401,
+   "page": 192,
+   "equations": [
+    "A-2-1",
+    "A-2-2",
+    "A-2-3",
+    "A-2-4"
+   ]
+  },
+  {
+   "label": "2.2",
+   "title": "Improved Design For Ponding",
+   "chapter": "A2",
+   "line": 12453,
+   "page": 193,
+   "equations": [
+    "A-2-5",
+    "A-2-6"
+   ]
+  },
+  {
+   "label": "3.1",
+   "title": "General Provisions",
+   "chapter": "A3",
+   "line": 12521,
+   "page": 196,
+   "equations": []
+  },
+  {
+   "label": "3.2",
+   "title": "Calculation Of Maximum Stresses And Stress Ranges",
+   "chapter": "A3",
+   "line": 12548,
+   "page": 197,
+   "equations": []
+  },
+  {
+   "label": "3.3",
+   "title": "Plain Material And Welded Joints",
+   "chapter": "A3",
+   "line": 12563,
+   "page": 197,
+   "equations": [
+    "A-3-1",
+    "A-3-2",
+    "A-3-3",
+    "A-3-4",
+    "A-3-5",
+    "A-3-6"
+   ]
+  },
+  {
+   "label": "3.4",
+   "title": "Bolts And Threaded Parts",
+   "chapter": "A3",
+   "line": 12691,
+   "page": 199,
+   "equations": [
+    "A-3-7"
+   ]
+  },
+  {
+   "label": "3.5",
+   "title": "Fabrication And Erection Requirements For Fatigue",
+   "chapter": "A3",
+   "line": 12735,
+   "page": 200,
+   "equations": []
+  },
+  {
+   "label": "3.6",
+   "title": "Nondestructive Examination Requirements For Fatigue",
+   "chapter": "A3",
+   "line": 12762,
+   "page": 201,
+   "equations": []
+  },
+  {
+   "label": "4.1",
+   "title": "General Provisions",
+   "chapter": "A4",
+   "line": 13376,
+   "page": 222,
+   "equations": [
+    "A-4-1"
+   ]
+  },
+  {
+   "label": "4.2",
+   "title": "Structural Design For Fire Conditions By Analysis",
+   "chapter": "A4",
+   "line": 13433,
+   "page": 223,
+   "equations": [
+    "A-4-2",
+    "A-4-3",
+    "A-4-4",
+    "A-4-5",
+    "A-4-6",
+    "A-4-7",
+    "A-4-8",
+    "A-4-9",
+    "A-4-10",
+    "A-4-11"
+   ]
+  },
+  {
+   "label": "4.3",
+   "title": "Design By Qualification Testing",
+   "chapter": "A4",
+   "line": 13780,
+   "page": 231,
+   "equations": []
+  },
+  {
+   "label": "5.1",
+   "title": "General Provisions",
+   "chapter": "A5",
+   "line": 13840,
+   "page": 233,
+   "equations": []
+  },
+  {
+   "label": "5.2",
+   "title": "Material Properties",
+   "chapter": "A5",
+   "line": 13851,
+   "page": 233,
+   "equations": []
+  },
+  {
+   "label": "5.3",
+   "title": "Evaluation By Structural Analysis",
+   "chapter": "A5",
+   "line": 13896,
+   "page": 234,
+   "equations": []
+  },
+  {
+   "label": "5.4",
+   "title": "Evaluation By Load Tests",
+   "chapter": "A5",
+   "line": 13915,
+   "page": 235,
+   "equations": []
+  },
+  {
+   "label": "5.5",
+   "title": "Evaluation Report",
+   "chapter": "A5",
+   "line": 13960,
+   "page": 236,
+   "equations": []
+  },
+  {
+   "label": "6.1",
+   "title": "General Provisions",
+   "chapter": "A6",
+   "line": 13988,
+   "page": 237,
+   "equations": []
+  },
+  {
+   "label": "6.2",
+   "title": "Column Bracing",
+   "chapter": "A6",
+   "line": 14032,
+   "page": 238,
+   "equations": [
+    "A-6-1",
+    "A-6-2a",
+    "A-6-2b",
+    "A-6-3",
+    "A-6-4a",
+    "A-6-4b"
+   ]
+  },
+  {
+   "label": "6.3",
+   "title": "Beam Bracing",
+   "chapter": "A6",
+   "line": 14105,
+   "page": 240,
+   "equations": [
+    "A-6-5",
+    "A-6-6a",
+    "A-6-6b",
+    "A-6-7",
+    "A-6-8a",
+    "A-6-8b",
+    "A-6-9",
+    "A-6-10",
+    "A-6-11a",
+    "A-6-11b",
+    "A-6-12",
+    "A-6-13"
+   ]
+  },
+  {
+   "label": "6.4",
+   "title": "Beam-Column Bracing",
+   "chapter": "A6",
+   "line": 14297,
+   "page": 243,
+   "equations": []
+  },
+  {
+   "label": "7.1",
+   "title": "General Stability Requirements",
+   "chapter": "A7",
+   "line": 14343,
+   "page": 245,
+   "equations": []
+  },
+  {
+   "label": "7.2",
+   "title": "Effective Length Method",
+   "chapter": "A7",
+   "line": 14349,
+   "page": 245,
+   "equations": []
+  },
+  {
+   "label": "7.3",
+   "title": "First-Order Analysis Method",
+   "chapter": "A7",
+   "line": 14405,
+   "page": 246,
+   "equations": [
+    "A-7-1",
+    "A-7-2"
+   ]
+  },
+  {
+   "label": "8.1",
+   "title": "Limitations",
+   "chapter": "A8",
+   "line": 14502,
+   "page": 249,
+   "equations": []
+  },
+  {
+   "label": "8.2",
+   "title": "Calculation Procedure",
+   "chapter": "A8",
+   "line": 14507,
+   "page": 249,
+   "equations": [
+    "A-8-1",
+    "A-8-2",
+    "A-8-3",
+    "A-8-4",
+    "A-8-5",
+    "A-8-6",
+    "A-8-7",
+    "A-8-8"
+   ]
+  }
+ ]
+}
