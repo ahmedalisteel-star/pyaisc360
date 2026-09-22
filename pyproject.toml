@@ -4,18 +4,30 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyaisc360"
-version = "0.1.0.dev0"
+version = "0.1.0"
 description = "AISC 360-16 steel design checks as a typed, traceable Python library"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Ahmed Ali" }]
-keywords = ["aisc", "steel", "structural", "lrfd", "asd", "bim", "freecad"]
+keywords = [
+  "aisc", "aisc-360", "steel", "steel-design", "structural-engineering",
+  "structural-design", "lrfd", "asd", "civil-engineering", "engineering-calculations",
+  "bim", "freecad",
+]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
-  "Programming Language :: Python :: 3.10",
+  "Intended Audience :: Developers",
   "Topic :: Scientific/Engineering",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Typing :: Typed",
 ]
 # Deliberately dependency-free at runtime: the library must import inside
 # FreeCAD's embedded interpreter, which has no pip of its own.
@@ -25,7 +37,9 @@ dependencies = []
 dev = ["pytest>=7.4", "pytest-cov>=4.1", "mypy>=1.8", "ruff>=0.3"]
 
 [project.urls]
-Source = "https://github.com/ahmedalisteel/pyaisc360"
+Homepage = "https://github.com/ahmedalisteel-star/pyaisc360"
+Source = "https://github.com/ahmedalisteel-star/pyaisc360"
+Issues = "https://github.com/ahmedalisteel-star/pyaisc360/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pyaisc360"]
