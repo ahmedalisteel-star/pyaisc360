@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyaisc360"
-version = "0.1.0"
+dynamic = ["version"]
 description = "AISC 360-16 steel design checks as a typed, traceable Python library"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -40,6 +40,9 @@ dev = ["pytest>=7.4", "pytest-cov>=4.1", "mypy>=1.8", "ruff>=0.3"]
 Homepage = "https://github.com/ahmedalisteel-star/pyaisc360"
 Source = "https://github.com/ahmedalisteel-star/pyaisc360"
 Issues = "https://github.com/ahmedalisteel-star/pyaisc360/issues"
+
+[tool.hatch.version]
+path = "src/pyaisc360/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pyaisc360"]

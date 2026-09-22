@@ -6,11 +6,17 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-09-22
+
 ### Added
 - `LICENSE` file (MIT), now shipped in the wheel and sdist.
 - CI test workflow: ruff, mypy (strict) and pytest on Python 3.10-3.13 for every
   push and pull request. Publishing to PyPI now runs the same checks first.
 - Install section in the README.
+
+### Changed
+- The package version is now read from `pyaisc360.__version__`, so it has a single
+  source of truth.
 
 ## [0.1.0] - 2026-09-22
 
@@ -23,5 +29,6 @@ First public release.
 - 1,138 tests, including checks against the AISC Design Examples V16.0.
 - No runtime dependencies, so it imports inside FreeCAD's embedded Python.
 
-[Unreleased]: https://github.com/ahmedalisteel-star/pyaisc360/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/ahmedalisteel-star/pyaisc360/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/ahmedalisteel-star/pyaisc360/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/ahmedalisteel-star/pyaisc360/releases/tag/v0.1.0
