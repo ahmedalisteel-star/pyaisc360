@@ -51,7 +51,7 @@ from .materials import (
 )
 from .sections import SectionAdapter, require_properties
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 #: The edition this library implements. Every citation resolves against it.
 SPECIFICATION = "ANSI/AISC 360-16, Specification for Structural Steel Buildings (July 7, 2016)"
