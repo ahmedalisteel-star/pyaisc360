@@ -8,6 +8,14 @@ Built to drop into open-source structural tooling (FreeCAD / BIMSteelAuto, OpenS
 BlenderBIM). No runtime dependencies, so it imports inside FreeCAD's embedded
 interpreter.
 
+## Install
+
+```bash
+pip install pyaisc360
+```
+
+Requires Python 3.10+. No runtime dependencies.
+
 ## Bring your own sections
 
 There is no shapes database here — the AISC *Shapes Database* is a separate
@@ -98,7 +106,7 @@ equations: they are scope, serviceability, fabrication and quality-assurance
 provisions rather than design calculations.
 
 ```bash
-py -m pytest tests/ -q
+python -m pytest tests/ -q
 ```
 
 ## Design rules
@@ -117,8 +125,8 @@ py -m pytest tests/ -q
 ## Regenerating the index
 
 ```bash
-py tools/scan_spec.py --source /path/to/A360-16W.txt --out data/
-py tools/gen_roadmap.py
+python tools/scan_spec.py --source /path/to/A360-16W.txt --out data/
+python tools/gen_roadmap.py
 ```
 
 ## Copyright note
@@ -132,3 +140,7 @@ therefore loaded at runtime rather than vendored here.
 
 This library is an aid to a qualified engineer, not a substitute for one. Every result
 is subject to the same professional review as a hand calculation.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
