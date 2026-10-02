@@ -35,7 +35,12 @@ from pyaisc360 import chapter_e as E
 from pyaisc360.chapter_b import AxialElement, kc_coefficient, limiting_width_to_thickness
 from pyaisc360.core.config import Basis
 from pyaisc360.core.enums import Axis, LimitState
-from pyaisc360.core.exceptions import AISC360Error, GeometryError, OutOfScopeError
+from pyaisc360.core.exceptions import (
+    AISC360Error,
+    GeometryError,
+    MissingPropertyError,
+    OutOfScopeError,
+)
 from pyaisc360.core.result import LimitStateResult, StrengthResult
 from pyaisc360.materials import A36, A500_C_RECT, A992
 from pyaisc360.sections import SectionAdapter
@@ -876,6 +881,44 @@ class TestEffectiveArea:
             E.SlenderElement("wall", AxialElement.RECTANGULAR_HSS_WALL, b=0.0, t=0.10)
         with pytest.raises(GeometryError, match="count"):
             E.SlenderElement("wall", AxialElement.RECTANGULAR_HSS_WALL, b=6.0, t=0.10, count=0)
+        with pytest.raises(GeometryError, match="h_over_tw must be positive"):
+            E.SlenderElement(
+                "flange", AxialElement.BUILT_UP_I_FLANGE, b=7.0, t=0.25, h_over_tw=0.0
+            )
+
+    def test_built_up_flange_requires_h_over_tw_through_effective_area(self) -> None:
+        element = E.SlenderElement(
+            "flange", AxialElement.BUILT_UP_I_FLANGE, b=7.0, t=0.25, count=2,
+        )
+        with pytest.raises(AISC360Error, match="h/tw|h_over_tw"):
+            E.effective_area(26.5, [element], E_STEEL, FY50, 30.0)
+
+    def test_built_up_flange_effective_area_uses_chapter_b_lambda_r(self) -> None:
+        h_over_tw = 40.0
+        element = E.SlenderElement(
+            "flange", AxialElement.BUILT_UP_I_FLANGE, b=7.0, t=0.25, count=2,
+            h_over_tw=h_over_tw,
+        )
+        expected_lam_r = limiting_width_to_thickness(
+            AxialElement.BUILT_UP_I_FLANGE,
+            E_STEEL,
+            FY50,
+            h_over_tw=h_over_tw,
+        )
+        _, detail = E.effective_area(26.5, [element], E_STEEL, FY50, 30.0)
+        assert detail["flange: lambda_r"] == pytest.approx(expected_lam_r, rel=1e-12)
+
+    def test_built_up_flange_effective_area_is_reduced(self) -> None:
+        element = E.SlenderElement(
+            "flange", AxialElement.BUILT_UP_I_FLANGE, b=7.0, t=0.25, count=2,
+            h_over_tw=40.0,
+        )
+        Ag = 26.5
+        Ae, detail = E.effective_area(Ag, [element], E_STEEL, FY50, 30.0)
+        assert 0.0 < Ae < Ag
+        assert "flange: lambda" in detail
+        assert "flange: lambda_r" in detail
+        assert "flange: be" in detail
 
 
 # ===========================================================================
@@ -996,6 +1039,26 @@ class TestCompressiveStrength:
         assert slender.nominal < bare.nominal
         assert "Sect. E7 applies" in slender.governing.note
 
+    def test_compressive_strength_applies_e7_to_built_up_i_flange(
+        self, w14x90: SectionAdapter
+    ) -> None:
+        element = E.SlenderElement(
+            "flange", AxialElement.BUILT_UP_I_FLANGE, b=7.0, t=0.25, count=2,
+            h_over_tw=40.0,
+        )
+        result = E.compressive_strength(
+            E.CompressionMember(
+                w14x90, A992, Lcx=360.0, Lcy=360.0, elements=[element],
+            )
+        )
+        detail = result.governing.detail
+        assert detail["Ae"] < 26.5
+        assert "flange: lambda" in detail
+        assert "flange: lambda_r" in detail
+        assert "flange: be" in detail
+        assert "Sect. E7 applies" in result.governing.note
+        assert "Sect. E7 applies" in result.report()
+
     def test_single_angle_uses_e5_slenderness(self) -> None:
         angle = SectionAdapter.from_mapping(
             {"name": "L4X4X1/4", "Ag": 1.93, "rx": 1.25, "ry": 1.25,
@@ -1026,19 +1089,82 @@ class TestCompressiveStrength:
         with pytest.raises(Exception, match="rx|ry"):
             E.compressive_strength(member)
 
-    def test_section_without_j_skips_e4_gracefully(self) -> None:
-        """A source that does not tabulate J still gets a Sect. E3 answer."""
+    def test_optional_e4_may_be_skipped_when_properties_are_unavailable(self) -> None:
+        """Default doubly symmetric E3 member may omit E4 when its properties are absent."""
         section = SectionAdapter.from_mapping(
             {"name": "minimal", "Ag": 26.5, "rx": 6.14, "ry": 3.70}
         )
         result = E.compressive_strength(
-            E.CompressionMember(section, A992, Lcx=360.0, Lcy=360.0)
+            E.CompressionMember(
+                section, A992, Lcx=360.0, Lcy=360.0, Lcz=360.0,
+                symmetry=E.Symmetry.DOUBLY, built_up=None,
+            )
         )
         assert result.limit_state is LimitState.FLEXURAL_BUCKLING
         assert len(result.limit_states) == 1
 
+    def test_required_e4_for_long_torsional_length_raises_when_j_is_missing(self) -> None:
+        section = SectionAdapter.from_mapping(
+            {
+                "name": "no-J long-Lcz section", "Ag": 26.5, "rx": 6.14, "ry": 3.70,
+                "Ix": 999.0, "Iy": 362.0,
+            }
+        )
+        member = E.CompressionMember(
+            section, A992, Lcx=120.0, Lcy=120.0, Lcz=900.0,
+        )
+        with pytest.raises(MissingPropertyError, match=r"Sect\. E4.*J"):
+            E.compressive_strength(member)
+
+    def test_required_e4_for_built_up_member_raises_when_j_is_missing(self) -> None:
+        section = SectionAdapter.from_mapping(
+            {
+                "name": "no-J built-up section", "Ag": 26.5, "rx": 6.14, "ry": 3.70,
+                "Ix": 999.0, "Iy": 362.0,
+            }
+        )
+        member = E.CompressionMember(
+            section, A992, Lcx=120.0, Lcy=120.0,
+            built_up=E.BuiltUpConfig(
+                a=60.0,
+                ri=1.0,
+                modified_axes=frozenset({Axis.MINOR}),
+            ),
+        )
+        with pytest.raises(MissingPropertyError, match=r"Sect\. E4.*J"):
+            E.compressive_strength(member)
+
 
 class TestSinglyAndUnsymmetricMembers:
+    def test_singly_symmetric_e4_raises_when_j_is_missing(self) -> None:
+        section = SectionAdapter.from_mapping(
+            {
+                "name": "no-J tee", "Ag": 13.2, "rx": 1.94, "ry": 2.95,
+                "Ix": 49.7, "Iy": 115.0,
+            }
+        )
+        member = E.CompressionMember(
+            section, A992, Lcx=120.0, Lcy=120.0,
+            symmetry=E.Symmetry.SINGLY_Y, yo=1.60, include_warping=False,
+        )
+        with pytest.raises(MissingPropertyError, match=r"Sect\. E4.*J"):
+            E.compressive_strength(member)
+
+    def test_unsymmetric_e4_raises_when_j_is_missing(self) -> None:
+        section = SectionAdapter.from_mapping(
+            {
+                "name": "no-J unsymmetric member", "Ag": 4.75, "rx": 1.90, "ry": 1.11,
+                "Ix": 17.3, "Iy": 6.22,
+            }
+        )
+        member = E.CompressionMember(
+            section, A36, Lcx=120.0, Lcy=120.0,
+            symmetry=E.Symmetry.UNSYMMETRIC, xo=1.03, yo=1.86,
+            include_warping=False,
+        )
+        with pytest.raises(MissingPropertyError, match=r"Sect\. E4.*J"):
+            E.compressive_strength(member)
+
     def test_tee_uses_e4_3_without_warping(self) -> None:
         """User Note, p. 16.1-37: for tees, omit Cw from Fez and take xo = 0."""
         tee = SectionAdapter.from_mapping(

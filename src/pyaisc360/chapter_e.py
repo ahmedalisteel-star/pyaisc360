@@ -39,7 +39,13 @@ from .chapter_b import AxialElement, limiting_width_to_thickness
 from .core.citations import cite
 from .core.config import DEFAULT_SETTINGS, Basis, DesignSettings
 from .core.enums import Axis, LimitState
-from .core.exceptions import AISC360Error, ConvergenceError, GeometryError, OutOfScopeError
+from .core.exceptions import (
+    AISC360Error,
+    ConvergenceError,
+    GeometryError,
+    MissingPropertyError,
+    OutOfScopeError,
+)
 from .core.result import LimitStateResult, StrengthResult
 from .core.units import Inch, Inch2, Inch4, Inch6, Ksi, Ratio
 from .materials import Steel
@@ -169,6 +175,9 @@ class SlenderElement:
     lam:
         Width-to-thickness ratio. Defaults to ``b/t``; supply it explicitly to
         use a catalog value such as ``bf/2tf`` that may be rounded differently.
+    h_over_tw:
+        Web slenderness ``h/tw`` required by Table B4.1a Case 2 when ``kind`` is
+        :attr:`AxialElement.BUILT_UP_I_FLANGE`.
     """
 
     name: str
@@ -177,12 +186,17 @@ class SlenderElement:
     t: Inch
     count: int = 1
     lam: Ratio | None = None
+    h_over_tw: Ratio | None = None
 
     def __post_init__(self) -> None:
         if self.b <= 0.0 or self.t <= 0.0:
             raise GeometryError(f"{self.name}: b and t must be positive, got {self.b}, {self.t}")
         if self.count < 1:
             raise GeometryError(f"{self.name}: count must be at least 1, got {self.count}")
+        if self.h_over_tw is not None and self.h_over_tw <= 0.0:
+            raise GeometryError(
+                f"{self.name}: h_over_tw must be positive, got {self.h_over_tw}"
+            )
 
     @property
     def ratio(self) -> Ratio:
@@ -898,7 +912,9 @@ def effective_area(
     Ae = Ag
     detail: dict[str, float] = {}
     for element in elements:
-        lam_r = limiting_width_to_thickness(element.kind, E, Fy)
+        lam_r = limiting_width_to_thickness(
+            element.kind, E, Fy, h_over_tw=element.h_over_tw
+        )
         c1, published_c2 = _TABLE_E7_1[_e7_case(element.kind)]
         c2 = c2_from_c1(c1)
         be = effective_width(element.b, element.ratio, lam_r, Fy, Fcr, c1, c2)
@@ -1119,23 +1135,37 @@ def compressive_strength(
     return result
 
 
+def _e4_is_required(member: CompressionMember) -> bool:
+    """Whether represented member data makes Sect. E4 applicable."""
+    return (
+        member.symmetry is not Symmetry.DOUBLY
+        or member.built_up is not None
+        or (
+            member.symmetry is Symmetry.DOUBLY
+            and member.Lcz_effective > member.Lcy
+        )
+    )
+
+
 def _evaluate_E4(
     member: CompressionMember, E: Ksi, G: Ksi, Ag: Inch2, rx: Inch, ry: Inch
 ) -> tuple[Ksi | None, dict[str, float], str]:
     """Evaluate the applicable Sect. E4 branch, or return ``None`` if none applies.
 
     Sect. E4, p. 16.1-36, applies to singly symmetric and unsymmetric members,
-    certain doubly symmetric members such as cruciforms and built-up shapes, and
-    doubly symmetric members whose torsional effective length exceeds the lateral
-    one. For a doubly symmetric rolled shape with ``Lcz <= Lcy`` the User Note to
-    Sect. E3 makes clear Sect. E4 will not govern, but it is still evaluated --
-    the cost is negligible and reporting it makes the margin explicit.
+    built-up members, and doubly symmetric members whose torsional effective
+    length exceeds the lateral one. For other doubly symmetric members, E4 is
+    still evaluated when its properties are available so the margin is reported.
     """
     section = member.section
     needed = ("Ix", "Iy", "J")
     try:
         props = require_properties(section, *needed)
-    except Exception:  # noqa: BLE001 - absence of J/Cw simply means E4 is skipped
+    except MissingPropertyError as exc:
+        if _e4_is_required(member):
+            raise MissingPropertyError(
+                f"Sect. E4 is applicable but cannot be evaluated: {exc}"
+            ) from exc
         return None, {}, "Sect. E4 not evaluated: Ix, Iy or J unavailable"
 
     Ix, Iy, J = props["Ix"], props["Iy"], props["J"]
