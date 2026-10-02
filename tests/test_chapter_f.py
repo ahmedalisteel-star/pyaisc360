@@ -758,6 +758,79 @@ class TestF9:
         assert states[0].citation.equation == "F9-5"
         assert states[0].nominal == pytest.approx(1.5 * FY50 * 6.05, rel=1e-12)
 
+    def test_double_angle_ltb_web_legs_compression_uses_F10_2(
+        self, tee: SectionAdapter
+    ) -> None:
+        states = F.f9_strength(
+            F.FlexuralMember(
+                tee, A992, shape=F.ShapeType.DOUBLE_ANGLE, Lb=400.0, Cb=1.0,
+                stem_in_compression=True,
+            ),
+            d=9.0, Sxc=6.05, flange_class=COMPACT, lam_f=6.0, lam_pf=9.15,
+            lam_rf=24.08, d_over_tw=20.0,
+        )
+        ltb = next(s for s in states if s.limit_state is LimitState.LATERAL_TORSIONAL_BUCKLING)
+        My = FY50 * 6.05
+        Mcr = F.Mcr_F9(
+            1.0, 400.0, E_STEEL, 22.5, 0.435, 9.0, stem_in_compression=True,
+        )
+        ratio = My / Mcr
+        expected = min((1.92 - 1.17 * math.sqrt(ratio)) * My, 1.5 * My)
+
+        assert ratio <= 1.0
+        assert ltb.citation.equation == "F10-2"
+        assert ltb.nominal == pytest.approx(expected, rel=1e-12)
+        assert ltb.detail["Mcr"] == pytest.approx(Mcr, rel=1e-12)
+        assert ltb.detail["My"] == pytest.approx(My, rel=1e-12)
+        assert ltb.detail["My/Mcr"] == pytest.approx(ratio, rel=1e-12)
+        assert "double angle, web legs in compression" in ltb.note
+
+    def test_double_angle_ltb_web_legs_compression_uses_F10_3(
+        self, tee: SectionAdapter
+    ) -> None:
+        states = F.f9_strength(
+            F.FlexuralMember(
+                tee, A992, shape=F.ShapeType.DOUBLE_ANGLE, Lb=500.0, Cb=1.0,
+                stem_in_compression=True,
+            ),
+            d=9.0, Sxc=6.05, flange_class=COMPACT, lam_f=6.0, lam_pf=9.15,
+            lam_rf=24.08, d_over_tw=20.0,
+        )
+        ltb = next(s for s in states if s.limit_state is LimitState.LATERAL_TORSIONAL_BUCKLING)
+        My = FY50 * 6.05
+        Mcr = F.Mcr_F9(
+            1.0, 500.0, E_STEEL, 22.5, 0.435, 9.0, stem_in_compression=True,
+        )
+        ratio = My / Mcr
+        expected = (0.92 - 0.17 * Mcr / My) * Mcr
+
+        assert ratio > 1.0
+        assert ltb.citation.equation == "F10-3"
+        assert ltb.nominal == pytest.approx(expected, rel=1e-12)
+        assert ltb.detail["Mcr"] == pytest.approx(Mcr, rel=1e-12)
+        assert ltb.detail["My"] == pytest.approx(My, rel=1e-12)
+        assert ltb.detail["My/Mcr"] == pytest.approx(ratio, rel=1e-12)
+        assert "double angle, web legs in compression" in ltb.note
+
+    def test_tee_stem_compression_ltb_retains_F9_13(self, tee: SectionAdapter) -> None:
+        states = F.f9_strength(
+            F.FlexuralMember(
+                tee, A992, shape=F.ShapeType.TEE, Lb=500.0, Cb=1.0,
+                stem_in_compression=True,
+            ),
+            d=9.0, Sxc=6.05, flange_class=COMPACT, lam_f=6.0, lam_pf=9.15,
+            lam_rf=24.08, d_over_tw=20.0,
+        )
+        ltb = next(s for s in states if s.limit_state is LimitState.LATERAL_TORSIONAL_BUCKLING)
+        My = FY50 * 6.05
+        Mcr = F.Mcr_F9(
+            1.0, 500.0, E_STEEL, 22.5, 0.435, 9.0, stem_in_compression=True,
+        )
+
+        assert ltb.citation.equation == "F9-13"
+        assert ltb.nominal == pytest.approx(min(Mcr, My), rel=1e-12)
+        assert "tee stem in compression" in ltb.note
+
     def test_the_sign_of_B_dominates_the_ltb_strength(self) -> None:
         """Eqs. F9-11 vs F9-12: the same tee is far weaker with its stem in compression.
 
@@ -768,6 +841,27 @@ class TestF9:
         compression = F.Mcr_F9(1.0, 120.0, E_STEEL, 22.5, 0.435, 9.0, stem_in_compression=True)
         assert compression < tension
         assert tension / compression > 5.0
+
+    def test_Mcr_uses_F9_10_without_Cb(self) -> None:
+        Lb, Iy, J, d = 120.0, 22.5, 0.435, 9.0
+        mcr_1 = F.Mcr_F9(
+            1.0, Lb, E_STEEL, Iy, J, d, stem_in_compression=False,
+        )
+        mcr_2 = F.Mcr_F9(
+            2.0, Lb, E_STEEL, Iy, J, d, stem_in_compression=False,
+        )
+
+        magnitude = 2.3 * (d / Lb) * math.sqrt(Iy / J)
+        B = magnitude
+        expected = (
+            1.95
+            * E_STEEL
+            / Lb
+            * math.sqrt(Iy * J)
+            * (B + math.sqrt(1.0 + B**2))
+        )
+        assert mcr_1 == pytest.approx(mcr_2, rel=1e-12)
+        assert mcr_1 == pytest.approx(expected, rel=1e-12)
 
     def test_Mcr_reduces_to_the_pure_torsion_value_at_B_zero(self) -> None:
         """As Lb grows, B -> 0 and Eq. F9-10 tends to 1.95*E*sqrt(Iy*J)/Lb."""
