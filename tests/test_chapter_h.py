@@ -368,20 +368,40 @@ class TestH3Combined:
         assert H.torsion_may_be_neglected(20.0, 100.0)
         assert not H.torsion_may_be_neglected(20.1, 100.0)
 
-    def test_the_shear_and_torsion_pair_is_squared_together(self) -> None:
-        """Eq. H3-6: (Pr/Pc + Mr/Mc) + (Vr/Vc + Tr/Tc)^2.
-
-        Squaring the two shear terms individually, or squaring the whole
-        expression, both give the wrong answer. Shear and torsion are both shear
-        flows that add directly before interacting quadratically with the normal
-        stresses.
-        """
+    def test_H3_6_squares_both_grouped_interactions(self) -> None:
+        """Revised Eq. H3-6 squares axial/flexure and shear/torsion as groups."""
         result = H.hss_combined_torsion(30.0, 100.0, 20.0, 100.0, 25.0, 100.0, 30.0, 100.0)
-        expected = (0.3 + 0.2) + (0.25 + 0.30) ** 2
+        expected = (0.3 + 0.2) ** 2 + (0.25 + 0.30) ** 2
+        assert result.ratio == pytest.approx(0.5525, rel=1e-12)
         assert result.ratio == pytest.approx(expected, rel=1e-12)
+        assert result.terms["(Pr/Pc + Mr/Mc)^2"] == pytest.approx(
+            (0.3 + 0.2) ** 2,
+            rel=1e-12,
+        )
+        assert result.terms["(Vr/Vc + Tr/Tc)^2"] == pytest.approx(
+            (0.25 + 0.30) ** 2,
+            rel=1e-12,
+        )
         # the wrong groupings, for contrast
         assert result.ratio != pytest.approx(0.3 + 0.2 + 0.25**2 + 0.30**2, rel=1e-6)
         assert result.ratio != pytest.approx((0.3 + 0.2 + 0.25 + 0.30) ** 2, rel=1e-6)
+
+    def test_H3_6_axial_flexure_group_is_squared(self) -> None:
+        result = H.hss_combined_torsion(
+            30.0, 100.0, 20.0, 100.0, 0.0, 100.0, 0.0, 100.0,
+        )
+        assert result.ratio == pytest.approx(0.25, rel=1e-12)
+
+    def test_H3_6_shear_torsion_group_is_squared(self) -> None:
+        result = H.hss_combined_torsion(
+            0.0, 100.0, 0.0, 100.0, 25.0, 100.0, 30.0, 100.0,
+        )
+        assert result.ratio == pytest.approx((0.25 + 0.30) ** 2, rel=1e-12)
+
+    def test_H3_6_ratio_is_independent_of_action_signs(self) -> None:
+        positive = H.hss_combined_torsion(30.0, 100.0, 20.0, 100.0, 25.0, 100.0, 30.0, 100.0)
+        negative = H.hss_combined_torsion(-30.0, 100.0, -20.0, 100.0, -25.0, 100.0, -30.0, 100.0)
+        assert negative.ratio == pytest.approx(positive.ratio, rel=1e-12)
 
     def test_the_squared_pair_grows_faster_than_linearly(self) -> None:
         single = H.hss_combined_torsion(0.0, 100.0, 0.0, 100.0, 20.0, 100.0, 0.0, 100.0)
