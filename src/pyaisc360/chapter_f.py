@@ -50,7 +50,7 @@ from enum import Enum
 from typing import Any
 
 from .chapter_b import kc_coefficient
-from .core.citations import cite
+from .core.citations import Citation, cite
 from .core.config import DEFAULT_SETTINGS, Basis, DesignSettings
 from .core.enums import Axis, FlexuralSlenderness, LimitState
 from .core.exceptions import AISC360Error, GeometryError, OutOfScopeError
@@ -248,6 +248,15 @@ def capped_ltb(Cb: float, bracketed: KipIn, cap: KipIn) -> KipIn:
     if Cb <= 0.0:
         raise GeometryError(f"Cb must be positive, got {Cb}")
     return min(Cb * bracketed, cap)
+
+
+def _f10_ltb_strength(My: KipIn, Mcr: KipIn) -> tuple[KipIn, Citation, str]:
+    """Evaluate the F10.2 LTB interaction used by Eqs. F10-2 and F10-3."""
+    if My / Mcr <= 1.0:
+        Mn = min((1.92 - 1.17 * math.sqrt(My / Mcr)) * My, 1.5 * My)  # Eq. F10-2
+        return Mn, cite("F10-2"), "My/Mcr <= 1.0"
+    Mn = (0.92 - 0.17 * Mcr / My) * Mcr  # Eq. F10-3
+    return Mn, cite("F10-3"), "My/Mcr > 1.0"
 
 
 # ===========================================================================
@@ -1193,6 +1202,9 @@ def Mcr_F9(
     compression is far weaker than the same tee with the stem in tension,
     because ``B + sqrt(1+B^2)`` collapses towards zero as ``B`` goes negative.
     Getting the sign wrong is unconservative by a large factor, not a small one.
+
+    ``Cb`` is retained in the signature for API compatibility, but it does not
+    appear in AISC Eq. F9-10.
     """
     if Lb <= 0.0:
         raise GeometryError(f"Lb must be positive, got {Lb}")
@@ -1201,7 +1213,7 @@ def Mcr_F9(
 
     magnitude = 2.3 * (d / Lb) * math.sqrt(Iy / J)
     B = -magnitude if stem_in_compression else magnitude
-    return Cb * 1.95 * E / Lb * math.sqrt(Iy * J) * (B + math.sqrt(1.0 + B**2))
+    return 1.95 * E / Lb * math.sqrt(Iy * J) * (B + math.sqrt(1.0 + B**2))
 
 
 def f9_strength(
@@ -1253,13 +1265,21 @@ def f9_strength(
     # -- Lateral-torsional buckling, Sect. F9.2 ----------------------------
     if member.Lb > 0.0:
         if member.stem_in_compression:
-            # Sect. F9.2(b): Mcr from Eq. F9-10 with B negative, capped at My.
+            # Sect. F9.2(b): Mcr from Eq. F9-10 with B negative.
             Mcr = Mcr_F9(member.Cb, member.Lb, E, Iy, J, d, stem_in_compression=True)
-            Mn = min(Mcr, My)  # Eq. F9-13
+            if double_angle:
+                Mn, citation, interaction_note = _f10_ltb_strength(My, Mcr)
+                note = f"double angle, web legs in compression, {interaction_note}"
+                detail = {"Mcr": Mcr, "My": My, "My/Mcr": My / Mcr}
+            else:
+                Mn = min(Mcr, My)  # Eq. F9-13
+                citation = cite("F9-13")
+                note = "tee stem in compression, Mn = Mcr <= My"
+                detail = {"Mcr": Mcr, "My": My}
             states.append(
                 LimitStateResult(
-                    LimitState.LATERAL_TORSIONAL_BUCKLING, Mn, cite("F9-13"),
-                    detail={"Mcr": Mcr, "My": My}, note="stem in compression, Mn = Mcr <= My",
+                    LimitState.LATERAL_TORSIONAL_BUCKLING, Mn, citation,
+                    detail=detail, note=note,
                 )
             )
         else:
@@ -1423,12 +1443,7 @@ def f10_strength(
 
     # -- Lateral-torsional buckling, Sect. F10.2 ---------------------------
     if Mcr is not None and not member.continuous_restraint:
-        if My / Mcr <= 1.0:
-            Mn = min((1.92 - 1.17 * math.sqrt(My / Mcr)) * My, 1.5 * My)  # Eq. F10-2
-            citation, note = cite("F10-2"), "My/Mcr <= 1.0"
-        else:
-            Mn = (0.92 - 0.17 * Mcr / My) * Mcr  # Eq. F10-3
-            citation, note = cite("F10-3"), "My/Mcr > 1.0"
+        Mn, citation, note = _f10_ltb_strength(My, Mcr)
         states.append(
             LimitStateResult(
                 LimitState.LATERAL_TORSIONAL_BUCKLING, Mn, citation,
