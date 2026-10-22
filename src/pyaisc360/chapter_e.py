@@ -38,7 +38,7 @@ from typing import Any
 from .chapter_b import AxialElement, limiting_width_to_thickness
 from .core.citations import cite
 from .core.config import DEFAULT_SETTINGS, Basis, DesignSettings
-from .core.enums import LimitState
+from .core.enums import Axis, LimitState
 from .core.exceptions import AISC360Error, ConvergenceError, GeometryError, OutOfScopeError
 from .core.result import LimitStateResult, StrengthResult
 from .core.units import Inch, Inch2, Inch4, Inch6, Ksi, Ratio
@@ -245,12 +245,18 @@ class BuiltUpConfig:
         Snug-tight bolted, or welded/pretensioned.
     shape:
         Selects ``Ki`` for Eq. E6-2b.
+    modified_axes:
+        Flexural buckling axes for which Sect. E6 modified slenderness applies.
+        These are the buckling directions that produce relative deformation or
+        shear in the intermediate connectors. The caller determines this from
+        the built-up geometry. ``None`` means applicability was not specified.
     """
 
     a: Inch
     ri: Inch
     connector: ConnectorType = ConnectorType.WELDED_OR_PRETENSIONED
     shape: BuiltUpShape = BuiltUpShape.OTHER
+    modified_axes: frozenset[Axis] | None = None
 
     def __post_init__(self) -> None:
         if self.a <= 0.0 or self.ri <= 0.0:
@@ -950,30 +956,63 @@ def compressive_strength(
     steel = member.steel
     E, Fy, G = steel.E, steel.Fy, steel.G
 
+    built_up = member.built_up
+    if built_up is None:
+        modified_axes: frozenset[Axis] = frozenset()
+    else:
+        configured_axes = built_up.modified_axes
+        if configured_axes is None:
+            raise AISC360Error(
+                "Sect. E6 axis applicability is required for built-up compression members; "
+                "set BuiltUpConfig.modified_axes to the buckling axis or axes that produce "
+                "relative deformation or shear in the intermediate connectors"
+            )
+        modified_axes = configured_axes
+
     props = require_properties(section, "Ag", "rx", "ry")
     Ag, rx, ry = props["Ag"], props["rx"], props["ry"]
 
     notes: list[str] = []
 
     # -- slenderness, with the Sect. E5 / E6 modifications ------------------
+    axis_slenderness_detail: dict[str, float] = {}
     if member.angle is not None:
         Lc_r_governing = single_angle_effective_slenderness(member.angle, strict=settings.strict)
         slenderness_source = "Sect. E5 effective slenderness"
-        slendernesses = {"E5": Lc_r_governing}
     else:
-        slendernesses = {
-            "x": member.Lcx / rx,
-            "y": member.Lcy / ry,
+        slendernesses: dict[Axis, float] = {
+            Axis.MAJOR: member.Lcx / rx,
+            Axis.MINOR: member.Lcy / ry,
         }
-        if member.built_up is not None:
+        if built_up is not None:
             slendernesses = {
-                axis: built_up_modified_slenderness(value, member.built_up)
+                axis: (
+                    built_up_modified_slenderness(value, built_up)
+                    if axis in modified_axes
+                    else value
+                )
                 for axis, value in slendernesses.items()
             }
-            slenderness_source = "Sect. E6 modified slenderness (Lc/r)m"
+            if modified_axes == frozenset({Axis.MAJOR}):
+                slenderness_source = (
+                    "Sect. E6 modified slenderness on x-axis; y-axis uses ordinary Lc/r"
+                )
+            elif modified_axes == frozenset({Axis.MINOR}):
+                slenderness_source = (
+                    "Sect. E6 modified slenderness on y-axis; x-axis uses ordinary Lc/r"
+                )
+            elif modified_axes == frozenset({Axis.MAJOR, Axis.MINOR}):
+                slenderness_source = "Sect. E6 modified slenderness on x- and y-axes"
+            else:
+                slenderness_source = "Sect. E6 configured with no modified flexural axes"
         else:
             slenderness_source = "Lc/r"
-        Lc_r_governing = max(slendernesses.values())
+        governing_axis = max(slendernesses, key=slendernesses.__getitem__)
+        Lc_r_governing = slendernesses[governing_axis]
+        axis_slenderness_detail = {
+            "Lc/r x": slendernesses[Axis.MAJOR],
+            "Lc/r y": slendernesses[Axis.MINOR],
+        }
 
     if Lc_r_governing > SLENDERNESS_ADVISORY_LIMIT:
         notes.append(
@@ -1027,6 +1066,7 @@ def compressive_strength(
                 "Fe": Fe_flexural,
                 "Fcr": Fcr_flexural,
                 "Ae": Ae,
+                **axis_slenderness_detail,
                 **area_detail,
             },
             note=slenderness_source,

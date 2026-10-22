@@ -34,8 +34,9 @@ import pytest
 from pyaisc360 import chapter_e as E
 from pyaisc360.chapter_b import AxialElement, kc_coefficient, limiting_width_to_thickness
 from pyaisc360.core.config import Basis
-from pyaisc360.core.enums import LimitState
-from pyaisc360.core.exceptions import GeometryError, OutOfScopeError
+from pyaisc360.core.enums import Axis, LimitState
+from pyaisc360.core.exceptions import AISC360Error, GeometryError, OutOfScopeError
+from pyaisc360.core.result import LimitStateResult, StrengthResult
 from pyaisc360.materials import A36, A500_C_RECT, A992
 from pyaisc360.sections import SectionAdapter
 
@@ -566,6 +567,151 @@ class TestE6ModifiedSlenderness:
                 assert E.built_up_modified_slenderness(80.0, config) >= 80.0
 
 
+class TestE6AxisApplicability:
+    @pytest.fixture
+    def e3_section(self) -> SectionAdapter:
+        """Symmetric section with E4 properties to isolate E6 flexural buckling."""
+        return SectionAdapter.from_mapping(
+            {
+                "name": "E6-axis test section",
+                "Ag": 10.0,
+                "rx": 1.0,
+                "ry": 1.0,
+                "Ix": 10.0,
+                "Iy": 10.0,
+                "J": 0.5,
+            }
+        )
+
+    @staticmethod
+    def _member(
+        section: SectionAdapter,
+        Lcx: float,
+        Lcy: float,
+        modified_axes: frozenset[Axis] | None,
+    ) -> tuple[E.CompressionMember, E.BuiltUpConfig]:
+        config = E.BuiltUpConfig(
+            a=60.0,
+            ri=1.0,
+            connector=E.ConnectorType.SNUG_TIGHT_BOLTED,
+            modified_axes=modified_axes,
+        )
+        return (
+            E.CompressionMember(
+                section, A992, Lcx=Lcx, Lcy=Lcy, built_up=config,
+                include_warping=False,
+            ),
+            config,
+        )
+
+    @staticmethod
+    def _flexural_state(result: StrengthResult) -> LimitStateResult:
+        return next(
+            state
+            for state in result.limit_states
+            if state.limit_state is LimitState.FLEXURAL_BUCKLING
+        )
+
+    def test_unspecified_axis_applicability_raises(self, e3_section: SectionAdapter) -> None:
+        config = E.BuiltUpConfig(a=60.0, ri=1.0)
+        member = E.CompressionMember(
+            e3_section, A992, Lcx=100.0, Lcy=90.0, built_up=config,
+            include_warping=False,
+        )
+        with pytest.raises(AISC360Error, match="modified_axes"):
+            E.compressive_strength(member)
+
+    def test_major_axis_only_is_modified_and_governs(
+        self, e3_section: SectionAdapter
+    ) -> None:
+        member, config = self._member(
+            e3_section, 100.0, 90.0, frozenset({Axis.MAJOR})
+        )
+        state = self._flexural_state(E.compressive_strength(member))
+        expected_x = E.built_up_modified_slenderness(100.0, config)
+        expected_y = 90.0
+        expected_Fcr, expected_Fe = E.flexural_buckling_stress_E3(
+            max(expected_x, expected_y), E_STEEL, FY50
+        )
+
+        assert state.detail["Lc/r x"] == pytest.approx(expected_x, rel=1e-12)
+        assert state.detail["Lc/r y"] == pytest.approx(expected_y, rel=1e-12)
+        assert state.detail["Lc/r"] == pytest.approx(max(expected_x, expected_y), rel=1e-12)
+        assert state.detail["Lc/r"] == pytest.approx(expected_x, rel=1e-12)
+        assert state.detail["Fcr"] == pytest.approx(expected_Fcr, rel=1e-12)
+        assert state.detail["Fe"] == pytest.approx(expected_Fe, rel=1e-12)
+        assert "Sect. E6 modified slenderness on x-axis; y-axis uses ordinary Lc/r" in state.note
+
+    def test_minor_axis_only_is_modified_and_governs(
+        self, e3_section: SectionAdapter
+    ) -> None:
+        member, config = self._member(
+            e3_section, 100.0, 90.0, frozenset({Axis.MINOR})
+        )
+        state = self._flexural_state(E.compressive_strength(member))
+        expected_x = 100.0
+        expected_y = E.built_up_modified_slenderness(90.0, config)
+        expected_Fcr, expected_Fe = E.flexural_buckling_stress_E3(
+            max(expected_x, expected_y), E_STEEL, FY50
+        )
+
+        assert state.detail["Lc/r x"] == pytest.approx(expected_x, rel=1e-12)
+        assert state.detail["Lc/r y"] == pytest.approx(expected_y, rel=1e-12)
+        assert state.detail["Lc/r"] == pytest.approx(max(expected_x, expected_y), rel=1e-12)
+        assert state.detail["Fcr"] == pytest.approx(expected_Fcr, rel=1e-12)
+        assert state.detail["Fe"] == pytest.approx(expected_Fe, rel=1e-12)
+        assert "Sect. E6 modified slenderness on y-axis; x-axis uses ordinary Lc/r" in state.note
+
+    def test_unmodified_axis_can_govern(self, e3_section: SectionAdapter) -> None:
+        member, config = self._member(
+            e3_section, 100.0, 150.0, frozenset({Axis.MAJOR})
+        )
+        state = self._flexural_state(E.compressive_strength(member))
+        expected_x = E.built_up_modified_slenderness(100.0, config)
+        expected_y = 150.0
+
+        assert expected_x < expected_y
+        assert state.detail["Lc/r x"] == pytest.approx(expected_x, rel=1e-12)
+        assert state.detail["Lc/r y"] == pytest.approx(expected_y, rel=1e-12)
+        assert state.detail["Lc/r"] == pytest.approx(expected_y, rel=1e-12)
+
+    def test_modified_axis_can_govern(self, e3_section: SectionAdapter) -> None:
+        member, config = self._member(
+            e3_section, 100.0, 110.0, frozenset({Axis.MAJOR})
+        )
+        state = self._flexural_state(E.compressive_strength(member))
+        expected_x = E.built_up_modified_slenderness(100.0, config)
+        expected_y = 110.0
+
+        assert expected_x > expected_y
+        assert state.detail["Lc/r x"] == pytest.approx(expected_x, rel=1e-12)
+        assert state.detail["Lc/r y"] == pytest.approx(expected_y, rel=1e-12)
+        assert state.detail["Lc/r"] == pytest.approx(expected_x, rel=1e-12)
+
+    def test_both_axes_can_be_explicitly_modified(self, e3_section: SectionAdapter) -> None:
+        member, config = self._member(
+            e3_section, 100.0, 90.0, frozenset({Axis.MAJOR, Axis.MINOR})
+        )
+        state = self._flexural_state(E.compressive_strength(member))
+        expected_x = E.built_up_modified_slenderness(100.0, config)
+        expected_y = E.built_up_modified_slenderness(90.0, config)
+
+        assert state.detail["Lc/r x"] == pytest.approx(expected_x, rel=1e-12)
+        assert state.detail["Lc/r y"] == pytest.approx(expected_y, rel=1e-12)
+        assert "Sect. E6 modified slenderness on x- and y-axes" in state.note
+
+    def test_explicit_empty_axis_set_leaves_both_ratios_ordinary(
+        self, e3_section: SectionAdapter
+    ) -> None:
+        member, _ = self._member(e3_section, 100.0, 90.0, frozenset())
+        state = self._flexural_state(E.compressive_strength(member))
+
+        assert state.detail["Lc/r x"] == pytest.approx(100.0, rel=1e-12)
+        assert state.detail["Lc/r y"] == pytest.approx(90.0, rel=1e-12)
+        assert state.detail["Lc/r"] == pytest.approx(100.0, rel=1e-12)
+        assert "Sect. E6 configured with no modified flexural axes" in state.note
+
+
 # ===========================================================================
 # Sect. E7 -- slender elements
 # ===========================================================================
@@ -813,7 +959,10 @@ class TestCompressiveStrength:
         """Sect. E6.2(a): a/ri must not exceed 0.75*(Lc/r)."""
         member = E.CompressionMember(
             w14x90, A992, Lcx=360.0, Lcy=360.0,
-            built_up=E.BuiltUpConfig(a=200.0, ri=1.0),
+            # The y-axis has the larger ordinary Lc/r for this section.
+            built_up=E.BuiltUpConfig(
+                a=200.0, ri=1.0, modified_axes=frozenset({Axis.MINOR})
+            ),
         )
         assert "E6.2(a) NOT satisfied" in E.compressive_strength(member).governing.note
 
@@ -822,7 +971,10 @@ class TestCompressiveStrength:
         built = E.compressive_strength(
             E.CompressionMember(
                 w14x90, A992, Lcx=360.0, Lcy=360.0,
-                built_up=E.BuiltUpConfig(a=60.0, ri=1.0),
+                # Preserve this W14x90 comparison on its controlling y-axis.
+                built_up=E.BuiltUpConfig(
+                    a=60.0, ri=1.0, modified_axes=frozenset({Axis.MINOR})
+                ),
             )
         )
         assert built.nominal < plain.nominal
