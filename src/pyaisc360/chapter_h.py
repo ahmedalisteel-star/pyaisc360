@@ -488,13 +488,11 @@ def hss_combined_torsion(
 
     AISC 360-16, Eq. H3-6, Sect. H3.2, p. 16.1-83::
 
-        (Pr/Pc + Mr/Mc) + (Vr/Vc + Tr/Tc)^2 <= 1.0
+        (Pr/Pc + Mr/Mc)^2 + (Vr/Vc + Tr/Tc)^2 <= 1.0
 
-    Note the grouping: the axial and flexural terms are **linear**, the shear
-    and torsional terms are **squared as a pair**. Squaring them individually,
-    or squaring the whole expression, both give the wrong answer -- the second
-    bracket is squared after summing, because shear and torsion are both shear
-    flows that add directly before interacting quadratically with normal stress.
+    This uses the revised AISC 360-16 equation incorporating published errata:
+    axial force and flexure are summed first and then squared as one group, and
+    shear and torsion are summed first and then squared as one group.
 
     Applies only when ``Tr > 0.20*Tc``; below that
     :func:`torsion_may_be_neglected` permits Sect. H1 instead.
@@ -506,7 +504,7 @@ def hss_combined_torsion(
     axial_flexure = abs(Pr) / Pc + abs(Mr) / Mc
     shear_torsion = abs(Vr) / Vc + abs(Tr) / Tc
     return InteractionResult(
-        ratio=axial_flexure + shear_torsion**2,
+        ratio=axial_flexure**2 + shear_torsion**2,
         citation=cite("H3-6"),
         limit_state=LimitState.COMBINED_TORSION,
         terms={
@@ -514,9 +512,13 @@ def hss_combined_torsion(
             "Mr/Mc": abs(Mr) / Mc,
             "Vr/Vc": abs(Vr) / Vc,
             "Tr/Tc": abs(Tr) / Tc,
+            "(Pr/Pc + Mr/Mc)^2": axial_flexure**2,
             "(Vr/Vc + Tr/Tc)^2": shear_torsion**2,
         },
-        note="shear and torsion sum first, then square -- Eq. H3-6",
+        note=(
+            "axial/flexure and shear/torsion are summed within each group "
+            "and both groups are squared -- revised Eq. H3-6"
+        ),
     )
 
 
